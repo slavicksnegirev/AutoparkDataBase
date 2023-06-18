@@ -148,7 +148,7 @@ class Ui_dialog_edit_automobile(object):
     # setupUi
 
     def retranslateUi(self, dialog_edit_automobile):
-        dialog_edit_automobile.setWindowTitle(QCoreApplication.translate("dialog_edit_automobile", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0434\u0430\u043d\u043d\u044b\u0445 \u043e\u0431 \u0430\u0432\u0442\u043e\u043c\u043e\u0431\u0438\u043b\u0435", None))
+        dialog_edit_automobile.setWindowTitle(QCoreApplication.translate("dialog_edit_automobile", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0437\u0430\u043f\u0438\u0441\u0438", None))
         self.pushButton.setText(QCoreApplication.translate("dialog_edit_automobile", u"Apply", None))
         self.label_6.setText(QCoreApplication.translate("dialog_edit_automobile", u"\u0420\u0430\u0441\u0445\u043e\u0434 \u0442\u043e\u043f\u043b\u0438\u0432\u0430:", None))
         self.lineEdit_7.setPlaceholderText("")

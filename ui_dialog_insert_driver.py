@@ -127,14 +127,14 @@ class Ui_dialog_insert_driver(object):
     # setupUi
 
     def retranslateUi(self, dialog_insert_driver):
-        dialog_insert_driver.setWindowTitle(QCoreApplication.translate("dialog_insert_driver", u"\u0414\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f", None))
+        dialog_insert_driver.setWindowTitle(QCoreApplication.translate("dialog_insert_driver", u"\u0414\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u0437\u0430\u043f\u0438\u0441\u0438", None))
         self.pushButton.setText(QCoreApplication.translate("dialog_insert_driver", u"Apply", None))
         self.surname.setText(QCoreApplication.translate("dialog_insert_driver", u"\u0424\u0430\u043c\u0438\u043b\u0438\u044f:", None))
         self.name.setText(QCoreApplication.translate("dialog_insert_driver", u"\u0418\u043c\u044f:", None))
         self.patronymic.setText(QCoreApplication.translate("dialog_insert_driver", u"\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e:", None))
         self.label_4.setText(QCoreApplication.translate("dialog_insert_driver", u"\u0414\u0435\u043d\u044c \u0440\u043e\u0436\u0434\u0435\u043d\u0438\u044f:", None))
         self.dateEdit.setDisplayFormat(QCoreApplication.translate("dialog_insert_driver", u"yyyy-MM-dd", None))
-        self.label_7.setText(QCoreApplication.translate("dialog_insert_driver", u"\u0410\u0434\u0440\u0435\u0441\u0441:", None))
+        self.label_7.setText(QCoreApplication.translate("dialog_insert_driver", u"\u0410\u0434\u0440\u0435\u0441:", None))
         self.label_5.setText(QCoreApplication.translate("dialog_insert_driver", u"\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430:", None))
         self.lineEdit_5.setPlaceholderText(QCoreApplication.translate("dialog_insert_driver", u"+7 (999) 999-99-99", None))
         self.label_6.setText(QCoreApplication.translate("dialog_insert_driver", u"\u0412\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0435 \u043f\u0440\u0430\u0432\u0430:", None))

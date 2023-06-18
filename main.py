@@ -25,6 +25,9 @@ from ui_dialog_delete_order import Ui_dialog_delete_order
 from ui_dialog_insert_trip import Ui_dialog_insert_trip
 from ui_dialog_edit_trip import Ui_dialog_edit_trip
 from ui_dialog_delete_trip import Ui_dialog_delete_trip
+from ui_dialog_insert_service import Ui_dialog_insert_service
+from ui_dialog_edit_service import Ui_dialog_edit_service
+from ui_dialog_delete_service import Ui_dialog_delete_service
 from connection import DataBase
 
 class MainWindow(QMainWindow):
@@ -69,6 +72,9 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_add_6.clicked.connect(lambda: self.open_dialog_insert_trip())
         self.ui.pushButton_edit_6.clicked.connect(lambda: self.open_dialog_edit_trip())
         self.ui.pushButton_delete_6.clicked.connect(lambda : self.open_dialog_delete_trip())
+        self.ui.pushButton_add_7.clicked.connect(lambda: self.open_dialog_insert_service())
+        self.ui.pushButton_edit_7.clicked.connect(lambda: self.open_dialog_edit_service())
+        self.ui.pushButton_delete_7.clicked.connect(lambda : self.open_dialog_delete_service())
 
     def load_data_from_table(self, query, table):
         result = self.connection.execute_read_query(query)
@@ -556,6 +562,84 @@ class MainWindow(QMainWindow):
         self.connection.delete_trip_SSI(trip_ID)
         self.new_dialog_delete_trip.close()
         self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
+
+    def open_dialog_insert_service(self):
+        self.new_dialog_insert_service = QtWidgets.QDialog()
+        self.ui_dialog_insert_service = Ui_dialog_insert_service()
+        self.ui_dialog_insert_service.setupUi(self.new_dialog_insert_service)
+        self.new_dialog_insert_service.show()
+
+        self.ui_dialog_insert_service.comboBox.addItems(self.get_data_from_table_column(self.ui.tableWidget_2, 0))
+        self.ui_dialog_insert_service.comboBox_2.addItems(self.get_data_from_table_column(self.ui.tableWidget_3, 0))
+        self.ui_dialog_insert_service.pushButton.clicked.connect(lambda: self.insert_service())
+
+    def insert_service(self):
+        datetime = self.ui_dialog_insert_service.dateTimeEdit.text()
+        title = self.ui_dialog_insert_service.lineEdit_1.text()
+        description = self.ui_dialog_insert_service.lineEdit_2.text()
+        automobile_ID = self.ui_dialog_insert_service.comboBox.currentText()
+        mechanic_ID = self.ui_dialog_insert_service.comboBox_2.currentText()
+
+        self.connection.insert_service_SSI(datetime, title, description, automobile_ID, mechanic_ID)
+        self.new_dialog_insert_service.close()
+        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+
+    def open_dialog_edit_service(self):
+        self.new_dialog_edit_service = QtWidgets.QDialog()
+        self.ui_dialog_edit_service = Ui_dialog_edit_service()
+        self.ui_dialog_edit_service.setupUi(self.new_dialog_edit_service)
+        self.new_dialog_edit_service.show()
+
+        self.ui_dialog_edit_service.comboBox.addItems(self.get_data_from_table_column(self.ui.tableWidget_7, 0))
+        self.ui_dialog_edit_service.comboBox_2.addItems(self.get_data_from_table_column(self.ui.tableWidget_2, 0))
+        self.ui_dialog_edit_service.comboBox_3.addItems(self.get_data_from_table_column(self.ui.tableWidget_3, 0))
+        self.set_current_service_data(self.ui_dialog_edit_service.comboBox.currentIndex())
+        self.ui_dialog_edit_service.comboBox.currentIndexChanged.connect(lambda: self.set_current_service_data(
+            self.ui_dialog_edit_service.comboBox.currentIndex()))
+        self.ui_dialog_edit_service.pushButton.clicked.connect(lambda: self.edit_service())
+
+    def set_current_service_data(self, index):
+        current_column_data = self.get_data_from_table_row(self.ui.tableWidget_7, index)
+
+        date = current_column_data[1]
+        self.ui_dialog_edit_service.dateTimeEdit.setDateTime(QDateTime(int(date[:4]), int(date[5:7]), int(date[8:10]),
+                                                                       int(date[11:13]), int(date[14:16]),
+                                                                       int(date[17:19])))
+        self.ui_dialog_edit_service.lineEdit_1.setText(current_column_data[2])
+        self.ui_dialog_edit_service.lineEdit_2.setText(current_column_data[3])
+        self.ui_dialog_edit_service.comboBox_2.setCurrentIndex(
+            self.ui_dialog_edit_service.comboBox_2.findText(current_column_data[4]))
+        self.ui_dialog_edit_service.comboBox_3.setCurrentIndex(self.ui_dialog_edit_service.comboBox_3.findText(
+            current_column_data[5]))
+
+    def edit_service(self):
+        service_ID = self.ui_dialog_edit_service.comboBox.currentText()
+
+        datetime = self.ui_dialog_edit_service.dateTimeEdit.text()
+        title = self.ui_dialog_edit_service.lineEdit_1.text()
+        description = self.ui_dialog_edit_service.lineEdit_2.text()
+        automobile_ID = self.ui_dialog_edit_service.comboBox_2.currentText()
+        mechanic_ID = self.ui_dialog_edit_service.comboBox_3.currentText()
+
+        self.connection.edit_service_SSI(datetime, title, description, automobile_ID, mechanic_ID, service_ID)
+        self.new_dialog_edit_service.close()
+        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+
+    def open_dialog_delete_service(self):
+        self.new_dialog_delete_service = QtWidgets.QDialog()
+        self.ui_dialog_delete_service = Ui_dialog_delete_service()
+        self.ui_dialog_delete_service.setupUi(self.new_dialog_delete_service)
+        self.new_dialog_delete_service.show()
+
+        self.ui_dialog_delete_service.comboBox.addItems(self.get_data_from_table_column(self.ui.tableWidget_7, 0))
+        self.ui_dialog_delete_service.pushButton.clicked.connect(lambda: self.delete_service())
+
+    def delete_service(self):
+        service_ID = self.ui_dialog_delete_service.comboBox.currentText()
+
+        self.connection.delete_service_SSI(service_ID)
+        self.new_dialog_delete_service.close()
+        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
 
 
 if __name__ == "__main__":
