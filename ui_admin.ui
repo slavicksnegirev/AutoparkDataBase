@@ -67,7 +67,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_8">
+        <widget class="QPushButton" name="pushButton_10">
          <property name="text">
           <string/>
          </property>
@@ -255,6 +255,20 @@
         </widget>
        </item>
        <item>
+        <widget class="Line" name="line_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_8">
+         <property name="text">
+          <string>Отчеты</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -268,7 +282,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_9">
+        <widget class="QPushButton" name="pushButton_12">
          <property name="text">
           <string>Выход</string>
          </property>
@@ -411,8 +425,9 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
+         <widget class="QWidget" name="page_9"/>
          <widget class="QWidget" name="page_1">
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
@@ -541,6 +556,7 @@
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="page_8"/>
          <widget class="QWidget" name="page_2">
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
@@ -1266,7 +1282,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_8</sender>
+   <sender>pushButton_10</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
@@ -1282,7 +1298,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_9</sender>
+   <sender>pushButton_12</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>

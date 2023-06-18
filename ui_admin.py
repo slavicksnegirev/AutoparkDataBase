@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitled.ui'
+## Form generated from reading UI file 'ui_admin.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.1
 ##
@@ -52,16 +52,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
-        self.pushButton_8 = QPushButton(self.widget)
-        self.pushButton_8.setObjectName(u"pushButton_8")
+        self.pushButton_10 = QPushButton(self.widget)
+        self.pushButton_10.setObjectName(u"pushButton_10")
         icon = QIcon()
         icon.addFile(u"icons/exit.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_8.setIcon(icon)
-        self.pushButton_8.setIconSize(QSize(32, 32))
-        self.pushButton_8.setCheckable(True)
-        self.pushButton_8.setAutoExclusive(True)
+        self.pushButton_10.setIcon(icon)
+        self.pushButton_10.setIconSize(QSize(32, 32))
+        self.pushButton_10.setCheckable(True)
+        self.pushButton_10.setAutoExclusive(True)
 
-        self.verticalLayout.addWidget(self.pushButton_8)
+        self.verticalLayout.addWidget(self.pushButton_10)
 
 
         self.gridLayout.addWidget(self.widget, 0, 0, 1, 1)
@@ -154,16 +154,28 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.pushButton_7)
 
+        self.line_4 = QFrame(self.widget_2)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setFrameShape(QFrame.HLine)
+        self.line_4.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_2.addWidget(self.line_4)
+
+        self.pushButton_8 = QPushButton(self.widget_2)
+        self.pushButton_8.setObjectName(u"pushButton_8")
+
+        self.verticalLayout_2.addWidget(self.pushButton_8)
+
         self.verticalSpacer_2 = QSpacerItem(20, 205, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
-        self.pushButton_9 = QPushButton(self.widget_2)
-        self.pushButton_9.setObjectName(u"pushButton_9")
-        self.pushButton_9.setCheckable(True)
-        self.pushButton_9.setAutoExclusive(True)
+        self.pushButton_12 = QPushButton(self.widget_2)
+        self.pushButton_12.setObjectName(u"pushButton_12")
+        self.pushButton_12.setCheckable(True)
+        self.pushButton_12.setAutoExclusive(True)
 
-        self.verticalLayout_2.addWidget(self.pushButton_9)
+        self.verticalLayout_2.addWidget(self.pushButton_12)
 
 
         self.gridLayout.addWidget(self.widget_2, 0, 1, 1, 1)
@@ -233,6 +245,9 @@ class Ui_MainWindow(object):
 
         self.stackedWidget = QStackedWidget(self.widget_3)
         self.stackedWidget.setObjectName(u"stackedWidget")
+        self.page_9 = QWidget()
+        self.page_9.setObjectName(u"page_9")
+        self.stackedWidget.addWidget(self.page_9)
         self.page_1 = QWidget()
         self.page_1.setObjectName(u"page_1")
         self.gridLayout_8 = QGridLayout(self.page_1)
@@ -301,6 +316,9 @@ class Ui_MainWindow(object):
         self.gridLayout_8.addWidget(self.tableWidget, 1, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.page_1)
+        self.page_8 = QWidget()
+        self.page_8.setObjectName(u"page_8")
+        self.stackedWidget.addWidget(self.page_8)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.gridLayout_7 = QGridLayout(self.page_2)
@@ -653,10 +671,10 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_menu.toggled.connect(self.widget.setVisible)
         self.pushButton_menu.toggled.connect(self.widget_2.setHidden)
-        self.pushButton_8.clicked.connect(MainWindow.close)
-        self.pushButton_9.clicked.connect(MainWindow.close)
+        self.pushButton_10.clicked.connect(MainWindow.close)
+        self.pushButton_12.clicked.connect(MainWindow.close)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -665,7 +683,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label_1.setText("")
-        self.pushButton_8.setText("")
+        self.pushButton_10.setText("")
         self.label_2.setText("")
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0411\u0414 \"\u0410\u0432\u0442\u043e\u043f\u0430\u0440\u043a\"", None))
         self.pushButton_1.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043e\u0434\u0438\u0442\u0435\u043b\u0438", None))
@@ -675,7 +693,8 @@ class Ui_MainWindow(object):
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043a\u0430\u0437\u044b", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0435\u0437\u0434\u043a\u0438", None))
         self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u043c\u043e\u043d\u0442\u044b", None))
-        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434", None))
+        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
+        self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434", None))
         self.pushButton_menu.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0435\u043d\u044e", None))
         self.pushButton_search.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.pushButton_account.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u043a\u0430\u0443\u043d\u0442", None))

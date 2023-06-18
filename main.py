@@ -1,7 +1,7 @@
 import sys
 
 import PySide6
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtGui
 from PySide6.QtSql import QSqlTableModel
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTableWidgetItem, QMessageBox, QFileDialog
 from PySide6.QtCore import QFile, QTextStream, Slot, QDate, QDateTime
@@ -37,8 +37,8 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.widget.hide()
-        self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.pushButton_1.setChecked(True)
+        self.ui.stackedWidget.setCurrentIndex(1)
 
         self.connection = DataBase()
         self.view_data()
@@ -52,7 +52,9 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_5.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_5))
         self.ui.pushButton_6.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_6))
         self.ui.pushButton_7.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_7))
-        self.ui.pushButton_account.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_8))
+        self.ui.pushButton_8.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_8))
+        self.ui.pushButton_account.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_9))
+        self.ui.pushButton_search.clicked.connect(lambda: self.on_search_bnt())
 
         self.ui.pushButton_add_1.clicked.connect(lambda: self.open_dialog_insert_driver())
         self.ui.pushButton_edit_1.clicked.connect(lambda : self.open_dialog_edit_driver())
@@ -87,10 +89,14 @@ class MainWindow(QMainWindow):
         for i in range(len(result)):
             table.resizeColumnToContents(i)
 
-    def get_data_from_table(self, table):
+    def get_data_from_table(self, table, text):
+        array = list()
         for i in range(table.rowCount()):
             for j in range(table.columnCount()):
-                print(table.item(i, j).text())
+                table.item(i,j).setBackground(QtGui.QColor(255, 255, 255, 0))
+                if text in table.item(i, j).text():
+                    array.append([i , j])
+        return array
 
     def get_data_from_table_column(self, table, j):
         data = list()
@@ -112,6 +118,16 @@ class MainWindow(QMainWindow):
         self.load_data_from_table("SELECT * FROM order_SSI", self.ui.tableWidget_5)
         self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
         self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+
+    def on_search_bnt(self):
+        self.ui.stackedWidget.currentChanged
+        array = self.get_data_from_table(self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()[len(
+            self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children())-1], self.ui.lineEdit.text())
+        for item in array:
+            self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()[len(self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()) - 1].item(item[0], item[1]).setBackground(QtGui.QColor(0, 255, 0, 70))
+
+        # if i != -1 and j != -1:
+
 
     def open_dialog_insert_driver(self):
         self.new_dialog_insert_driver = QtWidgets.QDialog()
