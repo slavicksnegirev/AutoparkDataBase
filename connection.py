@@ -104,8 +104,7 @@ class DataBase():
         return result
 
     def insert_mechanic_SSI(self, surname, name, patronymic, date_of_birth, address, phone_number):
-        query = f"""INSERT INTO mechanic_SSI (`license_plate`, `brand`, `color`, `mileage`, `year_of_release`, 
-        `engine_power`, `maximum_speed`, `fuel_consumption`) VALUES ("{surname}", "{name}", "{patronymic}", "{date_of_birth}", "{address}", "{phone_number}") """
+        query = f"""INSERT INTO mechanic_SSI (`surname`, `name`, `patronymic`, `date_of_birth`, `address`, `phone_number`) VALUES ("{surname}", "{name}", "{patronymic}", "{date_of_birth}", "{address}", "{phone_number}") """
         self.execute_query(self.connection, query)
 
     def edit_mechanic_SSI(self, surname, name, patronymic, date_of_birth, address, phone_number, mechanic_ID):
@@ -142,17 +141,17 @@ class DataBase():
 
         return result
 
-    def insert_order_SSI(self, datetime, description, departure_address, delivery_address, client_ID, trip_SSI_trip_ID):
+    def insert_order_SSI(self, datetime, description, departure_address, delivery_address, client_ID, trip_ID):
         query = f"""INSERT INTO order_SSI (`datetime`, `description`, `departure_address`, `delivery_address`, 
-        `client_ID`, `trip_SSI_trip_ID`) VALUES ("{datetime}", "{description}", "{departure_address}", 
-        "{delivery_address}", "{client_ID}", "{trip_SSI_trip_ID}")"""
+        `client_ID`, `trip_ID`) VALUES ("{datetime}", "{description}", "{departure_address}", 
+        "{delivery_address}", "{client_ID}", "{trip_ID}")"""
         self.execute_query(self.connection, query)
 
-    def edit_order_SSI(self, datetime, description, departure_address, delivery_address, client_ID, trip_SSI_trip_ID, order_ID):
-        query = f"""UPDATE order_SSI SET datetime = "{datetime}", description = "{description}", departure_address = 
-        "{departure_address}", delivery_address = "{delivery_address}", client_ID = "{client_ID}", trip_SSI_trip_ID = 
-        "{trip_SSI_trip_ID}" WHERE order_ID = {order_ID}"""
+    def edit_order_SSI(self, datetime, description, departure_address, delivery_address, client_ID, trip_ID, order_ID):
+        self.execute_query(self.connection, "SET FOREIGN_KEY_CHECKS=0")
+        query = f"""UPDATE order_SSI SET datetime = "{datetime}", description = "{description}", departure_address = "{departure_address}", delivery_address = "{delivery_address}",  client_ID = "{client_ID}", trip_ID = "{trip_ID}" WHERE order_ID = {order_ID}"""
         self.execute_query(self.connection, query)
+        self.execute_query(self.connection, "SET FOREIGN_KEY_CHECKS=1")
 
     def delete_order_SSI(self, order_ID):
         query = f"""DELETE FROM order_SSI WHERE order_ID = {order_ID}"""
@@ -165,9 +164,8 @@ class DataBase():
         return result
 
     def insert_trip_SSI(self, date, departure_time, arrival_time, mileage, driver_ID, automobile_ID):
-        query = f"""INSERT INTO order_SSI (`date`, `departure_time`, `arrival_time`, `mileage`, `driver_ID`, 
-        `automobile_ID`) VALUES ("{date}", "{departure_time}", "{arrival_time}", 
-        "{mileage}", "{driver_ID}", "{automobile_ID}")"""
+        query = f"""INSERT INTO trip_SSI (`date`, `departure_time`, `arrival_time`, `mileage`, `driver_ID`, 
+        `automobile_ID`) VALUES ("{date}", "{departure_time}", "{arrival_time}", "{mileage}", "{driver_ID}", "{automobile_ID}")"""
         self.execute_query(self.connection, query)
 
     def edit_trip_SSI(self, date, departure_time, arrival_time, mileage, driver_ID, automobile_ID, trip_ID):
