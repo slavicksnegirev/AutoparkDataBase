@@ -6,6 +6,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTableWidg
 from PySide6.QtCore import QFile, QTextStream, Slot
 
 from ui_admin import Ui_MainWindow
+from ui_dialog_driver import Ui_Dialog
 from connection import DataBase
 
 class MainWindow(QMainWindow):
@@ -51,6 +52,12 @@ class MainWindow(QMainWindow):
         self.load_data_from_table("SELECT * FROM order_SSI", self.ui.tableWidget_5)
         self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
         self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+
+    def open_dialog_driver(self):
+        self.new_window = QtWidgets.QDialog()
+        self.ui_window = Ui_Dialog()
+        self.ui_window.setupUi(self.new_window)
+        self.new_window.show()
 
 
 if __name__ == "__main__":
