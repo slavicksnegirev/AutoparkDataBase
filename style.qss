@@ -6,21 +6,10 @@
 /*= END
   ==================================================== */
 
-/*= Style for button to change menu style START
+/*= Style for button to change lineEdit START
   ==================================================== */
-	#pushButton_ {
-		padding: 5px;
-		border: none;
-		width: 30px;
-		height: 30px;
-	}
-/*= END
-  ==================================================== */
-
-/*= Style for header widget START
-  ==================================================== */
-	#widget {
-		background-color: #f9fafd;
+	#lineEdit {
+		border: 1px solid;
 	}
 /*= END
   ==================================================== */
@@ -30,7 +19,7 @@
   	/* style for widget */
 	#widget {
 		background-color: #313a46;
-		width:50px;
+		width: 45px;
 	}
 
     /* style for QPushButton and QLabel */
@@ -45,7 +34,7 @@
 	}
 
 	/* style for logo image */
-	#label {
+	#label_1 {
 		padding: 5px
 	}
 /*= END
@@ -77,43 +66,41 @@
 
 	/* style for logo image */
 	#label_2 {
-		padding: 5px;
+		padding-left: 5px;
 		color: #fff;
 	}
 
 	/* style for APP title */
 	#label_3 {
-		padding-right: 10px;
+		padding-right: 5px;
 		color: #fff;
 	}
 /*= END
   ==================================================== */
 
-/*= Style for search button START
+/*= Style for header widget START
   ==================================================== */
-	#search_btn {
-		border: none;
+	#widget_3 {
+		background-color: #f9fafd;
 	}
 /*= END
   ==================================================== */
 
-/*= Style for search input START
+/*= Style for stackedWidget START
   ==================================================== */
-	#search_input {
-		border: none;
-		padding: 5px 10px;
+	#stackedWidget QPushButton:hover {
+		background-color: rgba( 86, 101, 115, 0.5);
 	}
 
-	#search_input:focus {
-		background-color: #70B9FE;
+	#stackedWidget QPushButton:checked {
+		color: #fff;
 	}
-/*= END
-  ==================================================== */
 
-/*= Style for user information button START
-  ==================================================== */
-	#user_btn {
+	#stackedWidget QPushButton {
+		padding: 5px;
 		border: none;
+		width: 30px;
+		height: 30px;
 	}
 /*= END
   ==================================================== */
