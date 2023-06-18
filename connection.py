@@ -84,13 +84,12 @@ class DataBase():
     def insert_automobile_SSI(self, license_plate, brand, color, mileage, year_of_release, engine_power, maximum_speed, fuel_consumption):
         query = f"""INSERT INTO automobile_SSI (`license_plate`, `brand`, `color`, `mileage`, `year_of_release`, 
         `engine_power`, `maximum_speed`, `fuel_consumption`) VALUES ("{license_plate}", "{brand}", "{color}", 
-        "{mileage}", "{year_of_release}", "{engine_power}", "{maximum_speed}, "{fuel_consumption}")"""
+        "{mileage}", "{year_of_release}", "{engine_power}", "{maximum_speed}", "{fuel_consumption}" )"""
         self.execute_query(self.connection, query)
 
     def edit_automobile_SSI(self, license_plate, brand, color, mileage, year_of_release, engine_power, maximum_speed,
                             fuel_consumption, automobile_ID):
-        query = f"""UPDATE automobile_SSI SET license_plate = "{license_plate}", brand = "{brand}", color = "
-        {color}", mileage = "{mileage}", year_of_release = "{year_of_release}", engine_power = "{engine_power}",
+        query = f"""UPDATE automobile_SSI SET license_plate = "{license_plate}", brand = "{brand}", color = "{color}", mileage = "{mileage}", year_of_release = "{year_of_release}", engine_power = "{engine_power}",
         maximum_speed = "{maximum_speed}", fuel_consumption = "{fuel_consumption}" WHERE automobile_ID = {automobile_ID}"""
         self.execute_query(self.connection, query)
 

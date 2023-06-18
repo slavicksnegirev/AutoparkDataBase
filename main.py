@@ -10,6 +10,15 @@ from ui_admin import Ui_MainWindow
 from ui_dialog_insert_driver import Ui_dialog_insert_driver
 from ui_dialog_edit_driver import Ui_dialog_edit_driver
 from ui_dialog_delete_driver import Ui_dialog_delete_driver
+from ui_dialog_insert_automobile import Ui_dialog_insert_automobile
+from ui_dialog_edit_automobile import Ui_dialog_edit_automobile
+from ui_dialog_delete_automobile import Ui_dialog_delete_automobile
+from ui_dialog_insert_mechanic import Ui_dialog_insert_mechanic
+from ui_dialog_edit_mechanic import Ui_dialog_edit_mechanic
+from ui_dialog_delete_mechanic import Ui_dialog_delete_mechanic
+from ui_dialog_insert_client import Ui_dialog_insert_client
+from ui_dialog_edit_client import Ui_dialog_edit_client
+from ui_dialog_delete_client import Ui_dialog_delete_client
 from connection import DataBase
 
 class MainWindow(QMainWindow):
@@ -35,9 +44,13 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_6.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_6))
         self.ui.pushButton_7.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_7))
         self.ui.pushButton_account.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_8))
+
         self.ui.pushButton_add_1.clicked.connect(lambda: self.open_dialog_insert_driver())
         self.ui.pushButton_edit_1.clicked.connect(lambda : self.open_dialog_edit_driver())
         self.ui.pushButton_delete_1.clicked.connect(lambda : self.open_dialog_delete_driver())
+        self.ui.pushButton_add_2.clicked.connect(lambda: self.open_dialog_insert_automobile())
+        self.ui.pushButton_edit_2.clicked.connect(lambda: self.open_dialog_edit_automobile())
+        self.ui.pushButton_delete_2.clicked.connect(lambda : self.open_dialog_delete_automobile())
 
     def load_data_from_table(self, query, table):
         result = self.connection.execute_read_query(query)
@@ -108,7 +121,6 @@ class MainWindow(QMainWindow):
             self.ui_dialog_edit_driver.comboBox.currentIndex()))
         self.ui_dialog_edit_driver.pushButton.clicked.connect(lambda: self.edit_driver())
 
-
     def set_current_driver_data(self, index):
         current_column_data = self.get_data_from_table_row(self.ui.tableWidget, index)
 
@@ -120,6 +132,7 @@ class MainWindow(QMainWindow):
         self.ui_dialog_edit_driver.lineEdit_4.setText(current_column_data[5])
         self.ui_dialog_edit_driver.lineEdit_5.setText(current_column_data[6])
         self.ui_dialog_edit_driver.lineEdit_6.setText(current_column_data[7])
+
     def edit_driver(self):
         driver_ID = self.ui_dialog_edit_driver.comboBox.currentText()
         surname = self.ui_dialog_edit_driver.lineEdit_1.text()
@@ -150,6 +163,84 @@ class MainWindow(QMainWindow):
         self.connection.delete_driver_SSI(driver_ID)
         self.new_dialog_delete_driver.close()
         self.load_data_from_table("SELECT * FROM driver_SSI", self.ui.tableWidget)
+
+    def open_dialog_insert_automobile(self):
+        self.new_dialog_insert_automobile = QtWidgets.QDialog()
+        self.ui_dialog_insert_automobile = Ui_dialog_insert_automobile()
+        self.ui_dialog_insert_automobile.setupUi(self.new_dialog_insert_automobile)
+        self.new_dialog_insert_automobile.show()
+        self.ui_dialog_insert_automobile.pushButton.clicked.connect(lambda: self.insert_automobile())
+
+    def insert_automobile(self):
+        license_plate = self.ui_dialog_insert_automobile.lineEdit_1.text()
+        brand = self.ui_dialog_insert_automobile.lineEdit_2.text()
+        color = self.ui_dialog_insert_automobile.lineEdit_3.text()
+        mileage = self.ui_dialog_insert_automobile.lineEdit_4.text()
+        year_of_release = self.ui_dialog_insert_automobile.dateEdit.text()
+        engine_power = self.ui_dialog_insert_automobile.lineEdit_5.text()
+        maximum_speed = self.ui_dialog_insert_automobile.lineEdit_6.text()
+        fuel_cosumption = self.ui_dialog_insert_automobile.lineEdit_7.text()
+
+        self.connection.insert_automobile_SSI(license_plate, brand, color, mileage, year_of_release, engine_power,
+                                              maximum_speed, fuel_cosumption)
+        self.new_dialog_insert_automobile.close()
+        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
+
+    def open_dialog_edit_automobile(self):
+        self.new_dialog_edit_automobile = QtWidgets.QDialog()
+        self.ui_dialog_edit_automobile = Ui_dialog_edit_automobile()
+        self.ui_dialog_edit_automobile.setupUi(self.new_dialog_edit_automobile)
+        self.new_dialog_edit_automobile.show()
+
+        self.ui_dialog_edit_automobile.comboBox.addItems(self.get_data_from_table_column(self.ui.tableWidget_2, 0))
+        self.set_current_automobile_data(self.ui_dialog_edit_automobile.comboBox.currentIndex())
+        self.ui_dialog_edit_automobile.comboBox.currentIndexChanged.connect(lambda: self.set_current_automobile_data(
+            self.ui_dialog_edit_automobile.comboBox.currentIndex()))
+        self.ui_dialog_edit_automobile.pushButton.clicked.connect(lambda: self.edit_automobile())
+
+    def set_current_automobile_data(self, index):
+        current_column_data = self.get_data_from_table_row(self.ui.tableWidget_2, index)
+
+        self.ui_dialog_edit_automobile.lineEdit_1.setText(current_column_data[1])
+        self.ui_dialog_edit_automobile.lineEdit_2.setText(current_column_data[2])
+        self.ui_dialog_edit_automobile.lineEdit_3.setText(current_column_data[3])
+        self.ui_dialog_edit_automobile.lineEdit_4.setText(current_column_data[4])
+        self.ui_dialog_edit_automobile.dateEdit.setDate(QDate(int(current_column_data[5]), 1, 1))
+        self.ui_dialog_edit_automobile.lineEdit_5.setText(current_column_data[6])
+        self.ui_dialog_edit_automobile.lineEdit_6.setText(current_column_data[7])
+        self.ui_dialog_edit_automobile.lineEdit_7.setText(current_column_data[8])
+
+    def edit_automobile(self):
+        automobile_ID = self.ui_dialog_edit_automobile.comboBox.currentText()
+        license_plate = self.ui_dialog_edit_automobile.lineEdit_1.text()
+        brand = self.ui_dialog_edit_automobile.lineEdit_2.text()
+        color = self.ui_dialog_edit_automobile.lineEdit_3.text()
+        mileage = self.ui_dialog_edit_automobile.lineEdit_4.text()
+        year_of_release = self.ui_dialog_edit_automobile.dateEdit.text()
+        engine_power = self.ui_dialog_edit_automobile.lineEdit_5.text()
+        maximum_speed = self.ui_dialog_edit_automobile.lineEdit_6.text()
+        fuel_cosumption = self.ui_dialog_edit_automobile.lineEdit_7.text()
+
+        self.connection.edit_automobile_SSI(license_plate, brand, color, mileage, year_of_release, engine_power,
+                                              maximum_speed, fuel_cosumption, automobile_ID)
+        self.new_dialog_edit_automobile.close()
+        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
+
+    def open_dialog_delete_automobile(self):
+        self.new_dialog_delete_automobile = QtWidgets.QDialog()
+        self.ui_dialog_delete_automobile = Ui_dialog_delete_automobile()
+        self.ui_dialog_delete_automobile.setupUi(self.new_dialog_delete_automobile)
+        self.new_dialog_delete_automobile.show()
+
+        self.ui_dialog_delete_automobile.comboBox.addItems(self.get_data_from_table_column(self.ui.tableWidget_2, 0))
+        self.ui_dialog_delete_automobile.pushButton.clicked.connect(lambda: self.delete_automobile())
+
+    def delete_automobile(self):
+        automobile_ID = self.ui_dialog_delete_automobile.comboBox.currentText()
+
+        self.connection.delete_automobile_SSI(automobile_ID)
+        self.new_dialog_delete_automobile.close()
+        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
 
 
 

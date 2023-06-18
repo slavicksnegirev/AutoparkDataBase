@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dialog_insert_driver</class>
- <widget class="QDialog" name="dialog_insert_driver">
+ <class>dialog_insert_client</class>
+ <widget class="QDialog" name="dialog_insert_client">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>367</width>
-    <height>331</height>
+    <height>226</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,25 +35,15 @@
    </item>
    <item row="1" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="surname">
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Фамилия:</string>
+        <string>Номер телефона:</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit_1"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="name">
-       <property name="text">
-        <string>Имя:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_2"/>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="lineEdit_3"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="patronymic">
@@ -65,58 +55,30 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEdit_3"/>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEdit_2"/>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+     <item row="1" column="0">
+      <widget class="QLabel" name="name">
        <property name="text">
-        <string>День рождения:</string>
+        <string>Имя:</string>
        </property>
       </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="surname">
+       <property name="text">
+        <string>Фамилия:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEdit_1"/>
      </item>
      <item row="3" column="1">
-      <widget class="QDateEdit" name="dateEdit">
-       <property name="displayFormat">
-        <string>yyyy-MM-dd</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Адрес:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="lineEdit_4"/>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>Номер телефона:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
       <widget class="QLineEdit" name="lineEdit_5">
        <property name="placeholderText">
         <string>+7 (999) 999-99-99</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Водительские права:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QLineEdit" name="lineEdit_6">
-       <property name="placeholderText">
-        <string>99 99 999999</string>
        </property>
       </widget>
      </item>
@@ -128,7 +90,7 @@
       <string notr="true">font: 20pt &quot;.AppleSystemUIFont&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;ВВЕДИТЕ ДАННЫЕ О ВОДИТЕЛЕ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;ВВЕДИТЕ ДАННЫЕ О КЛИЕНТЕ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::AutoText</enum>

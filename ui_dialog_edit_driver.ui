@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Редактирование данных водителя</string>
+   <string>Редактирование записи</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

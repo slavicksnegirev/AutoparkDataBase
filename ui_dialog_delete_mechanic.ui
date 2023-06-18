@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dialog_delete_driver</class>
- <widget class="QDialog" name="dialog_delete_driver">
+ <class>dialog_delete_mechanic</class>
+ <widget class="QDialog" name="dialog_delete_mechanic">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>252</width>
+    <width>282</width>
     <height>148</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;ВЫБЕРИТЕ ID ВОДИТЕЛЯ&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;ДЛЯ УДАЛЕНИЯ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;ВЫБЕРИТЕ ID МЕХАНИКА&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;ДЛЯ УДАЛЕНИЯ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
