@@ -11,6 +11,8 @@ class DataBase():
         # self.insert_into_driver_SSI('1', '2', '3', '2023-01-01', '5', '6', '7')
         # self.update_driver_SSI('Дроздов', '2', '3', '2023-01-01', '5', '6', '23 56 857375', 11)
         # self.delete_driver_SSI(12)
+        # print(self.check_authorization("Снегирев Святослав Игоревич", "1")[0])
+
 
 
     def create_connection(self, host_name, user_name, user_password, db_name):
@@ -204,3 +206,37 @@ class DataBase():
 
         return result
 
+    def insert_authorization_SSI(self, login, password):
+        query = f"""INSERT INTO authorization_SSI (`login`, `password`) VALUES ("{login}", "{password}")"""
+        self.execute_query(self.connection, query)
+
+    def edit_authorization_SSI(self, login, password, authorization_ID):
+        query = f"""UPDATE authorization_SSI SET login = "{login}", password = "{password}" WHERE authorization_ID =
+         {authorization_ID}"""
+        self.execute_query(self.connection, query)
+
+    def delete_authorization_SSI(self, authorization_ID):
+        query = f"""DELETE FROM authorization_SSI WHERE authorization_ID = {authorization_ID}"""
+        self.execute_query(self.connection, query)
+
+    def get_authorization_IDs(self):
+        query = "SELECT authorization_ID FROM authorization_SSI"
+        result = self.execute_read_query(query)
+
+        return result
+
+
+
+    def get_all_workers_lastname(self):
+        query = """SELECT concat(surname, SPACE(1), name, SPACE(1), patronymic) as fullname
+        FROM driver_SSI
+        UNION SELECT concat(surname, SPACE(1), name, SPACE(1), patronymic) as fullname FROM mechanic_SSI;
+        """
+
+        result = self.execute_read_query(query)
+
+        return result
+
+    def check_authorization(self, login, password):
+        query = f"""SELECT EXISTS(SELECT * FROM authorization_SSI WHERE login = '{login}' and password = '{password}')"""
+        return self.execute_read_query(query)
