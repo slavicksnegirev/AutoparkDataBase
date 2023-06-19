@@ -1,6 +1,9 @@
 import pandas as pd
+import openpyxl
 import mysql.connector
+
 from mysql.connector import Error
+
 
 
 class DataBase():
@@ -8,12 +11,6 @@ class DataBase():
         super(DataBase, self).__init__()
         self.connection = self.create_connection("localhost", "root", "142536475869", "mydb")
         self.create_database(self.connection, "USE mydb")
-        # self.insert_into_driver_SSI('1', '2', '3', '2023-01-01', '5', '6', '7')
-        # self.update_driver_SSI('Дроздов', '2', '3', '2023-01-01', '5', '6', '23 56 857375', 11)
-        # self.delete_driver_SSI(12)
-        # print(self.check_authorization("Снегирев Святослав Игоревич", "1")[0])
-
-
 
     def create_connection(self, host_name, user_name, user_password, db_name):
         connection = None
@@ -56,6 +53,23 @@ class DataBase():
             return result
         except Error as e:
             print(f"The error '{e}' occurred")
+
+
+    def load_data_to_xlsx(self, data):
+        work_book = openpyxl.Workbook()
+        sheet = work_book.active
+
+        for i in range(1, 100):
+            for j in range(1, 100):
+                sheet.cell(row=i, column=j).value = ''
+
+        for row, item in enumerate(data):
+            for j in range(len(item)):
+                sheet.cell(row=row+1, column=j+1).value = str(item[j])
+
+
+        work_book.save('output.xlsx')
+        work_book.close()
 
     def insert_driver_SSI(self, surname, name, patronymic, date_of_birth, address, phone_number,
                           license_number):
@@ -239,4 +253,39 @@ class DataBase():
 
     def check_authorization(self, login, password):
         query = f"""SELECT EXISTS(SELECT * FROM authorization_SSI WHERE login = '{login}' and password = '{password}')"""
+        return self.execute_read_query(query)
+
+
+    def report_1(self):
+        query = f"""
+        select date,
+        concat(dS.surname, space(1), dS.name, space(1), dS.patronymic) as driver,
+        concat(aSS.brand, space(1), aSS.color, space(1), aSS.year_of_release) as car
+        from order_SSI oS
+        left join trip_SSI tS on ts.trip_ID = oS.trip_ID
+        left join automobile_SSI aSS on tS.automobile_ID = aSS.automobile_ID
+        left join driver_SSI dS on tS.driver_ID = dS.driver_ID
+        """
+        return self.execute_read_query(query)
+
+    def report_2(self):
+        query = f"""
+        select date,
+        concat(driver_SSI.surname, space(1), driver_SSI.name, space(1), driver_SSI.patronymic) as driver,
+        concat(automobile_SSI.brand, space(1), automobile_SSI.color, space(1), automobile_SSI.year_of_release) as car
+        from trip_SSI
+        join driver_SSI on trip_SSI.driver_ID = driver_SSI.driver_ID
+        join automobile_SSI on trip_SSI.automobile_ID = automobile_SSI.automobile_ID;
+        """
+        return self.execute_read_query(query)
+
+    def report_3(self):
+        query = f"""
+        select datetime,
+        concat(mechanic_SSI.surname, space(1), mechanic_SSI.name, space(1), mechanic_SSI.patronymic) as mechanic,
+        concat(automobile_SSI.brand, space(1), automobile_SSI.color, space(1), automobile_SSI.year_of_release) as car
+        from service_SSI
+        join mechanic_SSI on service_SSI.mechanic_ID = mechanic_SSI.mechanic_ID
+        join automobile_SSI on service_SSI.automobile_ID = automobile_SSI.automobile_ID;
+        """
         return self.execute_read_query(query)

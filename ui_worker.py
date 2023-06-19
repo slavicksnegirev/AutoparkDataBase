@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(793, 452)
+        MainWindow.resize(1000, 600)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -116,18 +116,6 @@ class Ui_MainWindow(object):
         self.pushButton_7.setAutoExclusive(True)
 
         self.verticalLayout_2.addWidget(self.pushButton_7)
-
-        self.line_4 = QFrame(self.widget_2)
-        self.line_4.setObjectName(u"line_4")
-        self.line_4.setFrameShape(QFrame.HLine)
-        self.line_4.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_2.addWidget(self.line_4)
-
-        self.pushButton_8 = QPushButton(self.widget_2)
-        self.pushButton_8.setObjectName(u"pushButton_8")
-
-        self.verticalLayout_2.addWidget(self.pushButton_8)
 
         self.verticalSpacer_2 = QSpacerItem(20, 205, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -546,7 +534,7 @@ class Ui_MainWindow(object):
         self.pushButton_10.clicked.connect(MainWindow.close)
         self.pushButton_12.clicked.connect(MainWindow.close)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -563,7 +551,6 @@ class Ui_MainWindow(object):
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043a\u0430\u0437\u044b", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0435\u0437\u0434\u043a\u0438", None))
         self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u043c\u043e\u043d\u0442\u044b", None))
-        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0447\u0435\u0442\u044b", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434", None))
         self.pushButton_menu.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0435\u043d\u044e", None))
         self.pushButton_search.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))

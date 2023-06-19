@@ -80,6 +80,10 @@ class AdminWindow(QMainWindow):
         self.ui.pushButton_delete_7.clicked.connect(lambda : self.open_dialog_delete_service())
         self.ui.pushButton_edit_9.clicked.connect(lambda: self.open_dialog_edit_authorization())
 
+        self.ui.report_1.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_1()))
+        self.ui.report_2.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_2()))
+        self.ui.report_3.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_3()))
+
         self.ui.pushButton_10.clicked.connect(lambda: self.close_window())
         self.ui.pushButton_12.clicked.connect(lambda: self.close_window())
 

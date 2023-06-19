@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1119, 557)
+        MainWindow.resize(1000, 600)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -163,6 +163,8 @@ class Ui_MainWindow(object):
 
         self.pushButton_8 = QPushButton(self.widget_2)
         self.pushButton_8.setObjectName(u"pushButton_8")
+        self.pushButton_8.setCheckable(True)
+        self.pushButton_8.setAutoExclusive(True)
 
         self.verticalLayout_2.addWidget(self.pushButton_8)
 
@@ -236,12 +238,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.widget_4)
 
-        self.line_5 = QFrame(self.widget_3)
-        self.line_5.setObjectName(u"line_5")
-        self.line_5.setFrameShape(QFrame.HLine)
-        self.line_5.setFrameShadow(QFrame.Sunken)
+        self.line_6 = QFrame(self.widget_3)
+        self.line_6.setObjectName(u"line_6")
+        self.line_6.setFrameShape(QFrame.HLine)
+        self.line_6.setFrameShadow(QFrame.Sunken)
 
-        self.verticalLayout_3.addWidget(self.line_5)
+        self.verticalLayout_3.addWidget(self.line_6)
 
         self.stackedWidget = QStackedWidget(self.widget_3)
         self.stackedWidget.setObjectName(u"stackedWidget")
@@ -353,6 +355,70 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_1)
         self.page_8 = QWidget()
         self.page_8.setObjectName(u"page_8")
+        self.verticalLayout_5 = QVBoxLayout(self.page_8)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.info = QLabel(self.page_8)
+        self.info.setObjectName(u"info")
+        self.info.setMaximumSize(QSize(16777215, 30))
+        self.info.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_5.addWidget(self.info)
+
+        self.gridLayout_9 = QGridLayout()
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.report_2 = QPushButton(self.page_8)
+        self.report_2.setObjectName(u"report_2")
+        self.report_2.setMaximumSize(QSize(50, 16777215))
+        icon4 = QIcon()
+        icon4.addFile(u"icons/excel.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.report_2.setIcon(icon4)
+        self.report_2.setIconSize(QSize(32, 32))
+
+        self.gridLayout_9.addWidget(self.report_2, 1, 2, 2, 1)
+
+        self.report_3 = QPushButton(self.page_8)
+        self.report_3.setObjectName(u"report_3")
+        self.report_3.setMaximumSize(QSize(50, 16777215))
+        self.report_3.setIcon(icon4)
+        self.report_3.setIconSize(QSize(32, 32))
+
+        self.gridLayout_9.addWidget(self.report_3, 3, 2, 1, 1)
+
+        self.report_1 = QPushButton(self.page_8)
+        self.report_1.setObjectName(u"report_1")
+        self.report_1.setMinimumSize(QSize(0, 0))
+        self.report_1.setMaximumSize(QSize(50, 16777215))
+        self.report_1.setIcon(icon4)
+        self.report_1.setIconSize(QSize(32, 32))
+
+        self.gridLayout_9.addWidget(self.report_1, 0, 2, 1, 1)
+
+        self.report1 = QLabel(self.page_8)
+        self.report1.setObjectName(u"report1")
+
+        self.gridLayout_9.addWidget(self.report1, 0, 0, 1, 2)
+
+        self.report3 = QLabel(self.page_8)
+        self.report3.setObjectName(u"report3")
+
+        self.gridLayout_9.addWidget(self.report3, 3, 0, 1, 2)
+
+        self.report2 = QLabel(self.page_8)
+        self.report2.setObjectName(u"report2")
+
+        self.gridLayout_9.addWidget(self.report2, 1, 0, 2, 2)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_11, 1, 3, 1, 1)
+
+
+        self.verticalLayout_5.addLayout(self.gridLayout_9)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_5.addItem(self.verticalSpacer_3)
+
         self.stackedWidget.addWidget(self.page_8)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
@@ -698,6 +764,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.stackedWidget)
 
+        self.line_5 = QFrame(self.widget_3)
+        self.line_5.setObjectName(u"line_5")
+        self.line_5.setFrameShape(QFrame.HLine)
+        self.line_5.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_3.addWidget(self.line_5)
+
 
         self.gridLayout.addWidget(self.widget_3, 0, 2, 1, 1)
 
@@ -709,7 +782,7 @@ class Ui_MainWindow(object):
         self.pushButton_10.clicked.connect(MainWindow.close)
         self.pushButton_12.clicked.connect(MainWindow.close)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -759,6 +832,13 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430", None));
         ___qtablewidgetitem10 = self.tableWidget.horizontalHeaderItem(7)
         ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0435 \u043f\u0440\u0430\u0432\u0430", None));
+        self.info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0414\u0430\u043d\u043d\u044b\u0435 \u0431\u0443\u0434\u0443\u0442 \u0432\u044b\u0432\u0435\u0434\u0435\u043d\u044b \u0432 \u0444\u0430\u0439\u043b &quot;output.xlsx&quot;</span></p></body></html>", None))
+        self.report_2.setText("")
+        self.report_3.setText("")
+        self.report_1.setText("")
+        self.report1.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:18pt;\">\u041e\u0442\u0447\u0435\u0442 \u21161 (\u0434\u0430\u0442\u0430 \u0437\u0430\u043a\u0430\u0437\u0430, \u0424\u0418\u041e \u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f, \u0434\u0430\u043d\u043d\u044b\u0435 \u043e \u043c\u0430\u0448\u0438\u043d\u0435):</span></p></body></html>", None))
+        self.report3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:18pt;\">\u041e\u0442\u0447\u0435\u0442 \u21163 (\u0434\u0430\u0442\u0430 \u0438 \u0432\u0440\u0435\u043c\u044f \u0440\u0435\u043c\u043e\u043d\u0442\u0430, \u0424\u0418\u041e \u043c\u0435\u0445\u0430\u043d\u0438\u043a\u0430, \u0434\u0430\u043d\u043d\u044b\u0435 \u043e \u043c\u0430\u0448\u0438\u043d\u0435):</span></p></body></html>", None))
+        self.report2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:18pt;\">\u041e\u0442\u0447\u0435\u0442 \u21162 (\u0434\u0430\u0442\u0430 \u043f\u043e\u0435\u0437\u0434\u043a\u0438, \u0424\u0418\u041e \u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f, \u0434\u0430\u043d\u043d\u044b\u0435 \u043e \u043c\u0430\u0448\u0438\u043d\u0435):</span></p></body></html>", None))
         self.pushButton_add_2.setText("")
         self.pushButton_edit_2.setText("")
         self.pushButton_delete_2.setText("")
