@@ -26,6 +26,7 @@ from ui_dialog_edit_service import Ui_dialog_edit_service
 from ui_dialog_delete_service import Ui_dialog_delete_service
 from ui_dialog_edit_authorization import Ui_dialog_edit_authorization
 
+
 class AdminWindow(QMainWindow):
     def __init__(self, authorization_window, connection):
         super(AdminWindow, self).__init__()
@@ -33,10 +34,9 @@ class AdminWindow(QMainWindow):
         self.connection = connection
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
         self.ui.widget.hide()
         self.ui.pushButton_1.setChecked(True)
-        self.ui.stackedWidget.setCurrentIndex(1)
+        self.ui.stackedWidget.setCurrentIndex(0)
 
         self.view_data()
         self.button_clicked()
@@ -54,40 +54,48 @@ class AdminWindow(QMainWindow):
         self.ui.pushButton_6.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_6))
         self.ui.pushButton_7.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_7))
         self.ui.pushButton_8.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_8))
-        self.ui.pushButton_account.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_9))
-        self.ui.pushButton_search.clicked.connect(lambda: self.on_search_bnt())
+        self.ui.pushButton_9.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_9))
 
         self.ui.pushButton_add_1.clicked.connect(lambda: self.open_dialog_insert_driver())
-        self.ui.pushButton_edit_1.clicked.connect(lambda : self.open_dialog_edit_driver())
-        self.ui.pushButton_delete_1.clicked.connect(lambda : self.open_dialog_delete_driver())
+        self.ui.pushButton_edit_1.clicked.connect(lambda: self.open_dialog_edit_driver())
+        self.ui.pushButton_delete_1.clicked.connect(lambda: self.open_dialog_delete_driver())
         self.ui.pushButton_add_2.clicked.connect(lambda: self.open_dialog_insert_automobile())
         self.ui.pushButton_edit_2.clicked.connect(lambda: self.open_dialog_edit_automobile())
-        self.ui.pushButton_delete_2.clicked.connect(lambda : self.open_dialog_delete_automobile())
+        self.ui.pushButton_delete_2.clicked.connect(lambda: self.open_dialog_delete_automobile())
         self.ui.pushButton_add_3.clicked.connect(lambda: self.open_dialog_insert_mechanic())
         self.ui.pushButton_edit_3.clicked.connect(lambda: self.open_dialog_edit_mechanic())
-        self.ui.pushButton_delete_3.clicked.connect(lambda : self.open_dialog_delete_mechanic())
+        self.ui.pushButton_delete_3.clicked.connect(lambda: self.open_dialog_delete_mechanic())
         self.ui.pushButton_add_4.clicked.connect(lambda: self.open_dialog_insert_client())
         self.ui.pushButton_edit_4.clicked.connect(lambda: self.open_dialog_edit_client())
-        self.ui.pushButton_delete_4.clicked.connect(lambda : self.open_dialog_delete_client())
+        self.ui.pushButton_delete_4.clicked.connect(lambda: self.open_dialog_delete_client())
         self.ui.pushButton_add_5.clicked.connect(lambda: self.open_dialog_insert_order())
         self.ui.pushButton_edit_5.clicked.connect(lambda: self.open_dialog_edit_order())
-        self.ui.pushButton_delete_5.clicked.connect(lambda : self.open_dialog_delete_order())
+        self.ui.pushButton_delete_5.clicked.connect(lambda: self.open_dialog_delete_order())
         self.ui.pushButton_add_6.clicked.connect(lambda: self.open_dialog_insert_trip())
         self.ui.pushButton_edit_6.clicked.connect(lambda: self.open_dialog_edit_trip())
-        self.ui.pushButton_delete_6.clicked.connect(lambda : self.open_dialog_delete_trip())
+        self.ui.pushButton_delete_6.clicked.connect(lambda: self.open_dialog_delete_trip())
         self.ui.pushButton_add_7.clicked.connect(lambda: self.open_dialog_insert_service())
         self.ui.pushButton_edit_7.clicked.connect(lambda: self.open_dialog_edit_service())
-        self.ui.pushButton_delete_7.clicked.connect(lambda : self.open_dialog_delete_service())
+        self.ui.pushButton_delete_7.clicked.connect(lambda: self.open_dialog_delete_service())
         self.ui.pushButton_edit_9.clicked.connect(lambda: self.open_dialog_edit_authorization())
 
         self.ui.report_1.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_1()))
         self.ui.report_2.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_2()))
         self.ui.report_3.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_3()))
 
-        self.ui.pushButton_10.clicked.connect(lambda: self.close_window())
-        self.ui.pushButton_12.clicked.connect(lambda: self.close_window())
+        self.ui.pushButton_search.clicked.connect(lambda: self.on_search_button())
+        self.ui.pushButton_exit_1.clicked.connect(lambda: self.close_window())
+        self.ui.pushButton_exit_2.clicked.connect(lambda: self.close_window())
 
-    def load_data_from_table(self, query, table):
+    def set_data_to_combobox_from_db(self, query, comboBox):
+        result = self.connection.execute_read_query(query)
+
+        for row, item in enumerate(result):
+            for i in range(len(item)):
+                comboBox.addItem(str(item[i]))
+
+
+    def set_data_to_table_from_db(self, query, table):
         result = self.connection.execute_read_query(query)
         table.setRowCount(len(result))
 
@@ -97,15 +105,6 @@ class AdminWindow(QMainWindow):
 
         for i in range(len(result)):
             table.resizeColumnToContents(i)
-
-    def get_data_from_table(self, table, text):
-        array = list()
-        for i in range(table.rowCount()):
-            for j in range(table.columnCount()):
-                table.item(i,j).setBackground(QtGui.QColor(255, 255, 255, 0))
-                if text in table.item(i, j).text():
-                    array.append([i , j])
-        return array
 
     def get_data_from_table_column(self, table, j):
         data = list()
@@ -120,23 +119,53 @@ class AdminWindow(QMainWindow):
         return data
 
     def view_data(self):
-        self.load_data_from_table("SELECT * FROM driver_SSI", self.ui.tableWidget)
-        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
-        self.load_data_from_table("SELECT * FROM mechanic_SSI", self.ui.tableWidget_3)
-        self.load_data_from_table("SELECT * FROM client_SSI", self.ui.tableWidget_4)
-        self.load_data_from_table("SELECT * FROM order_SSI", self.ui.tableWidget_5)
-        self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
-        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
-        self.load_data_from_table("SELECT * FROM authorization_SSI", self.ui.tableWidget_9)
+        self.set_data_to_table_from_db("SELECT * FROM driver_SSI", self.ui.tableWidget)
+        self.set_data_to_table_from_db("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
+        self.set_data_to_table_from_db("SELECT * FROM mechanic_SSI", self.ui.tableWidget_3)
+        self.set_data_to_table_from_db("SELECT * FROM client_SSI", self.ui.tableWidget_4)
+        self.set_data_to_table_from_db("SELECT * FROM order_SSI", self.ui.tableWidget_5)
+        self.set_data_to_table_from_db("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
+        self.set_data_to_table_from_db("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+        self.set_data_to_table_from_db("SELECT * FROM authorization_SSI", self.ui.tableWidget_9)
 
-    def on_search_bnt(self):
-        self.ui.stackedWidget.currentChanged
-        array = self.get_data_from_table(self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()[len(
-            self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children())-1], self.ui.lineEdit.text())
-        for item in array:
-            self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()[len(self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()) - 1].item(item[0], item[1]).setBackground(QtGui.QColor(0, 255, 0, 70))
+        query_for_comboBox_1 = f"""
+        select concat(license_plate, space(1), brand, space(1), year_of_release) as car
+        from automobile_SSI
+        """
 
-        # if i != -1 and j != -1:
+        query_for_comboBox_2 = f"""
+        select concat(surname, space(1), name, space(1), patronymic) as mechanic
+        from mechanic_SSI
+        """
+
+        query_for_comboBox_3 = f"""
+        select concat(surname, space(1), name, space(1), patronymic) as driver
+        from driver_SSI
+        """
+
+        self.set_data_to_combobox_from_db(query_for_comboBox_1, self.ui.comboBox_1)
+        self.set_data_to_combobox_from_db(query_for_comboBox_2, self.ui.comboBox_2)
+        self.set_data_to_combobox_from_db(query_for_comboBox_3, self.ui.comboBox_3)
+
+    def on_search_button(self):
+        self.view_data()
+        current_page = self.ui.stackedWidget.widget(self.ui.stackedWidget.currentIndex())
+        current_table = current_page.children()[len(current_page.children())-1]
+        request = self.ui.lineEdit.text().lower()
+
+        for row in range(current_table.rowCount()):
+            isHidden = True
+            for column in range(current_table.columnCount()):
+                item = current_table.item(row, column)
+                if request in item.text().lower():
+                    isHidden = False
+                    if request == '':
+                        current_table.item(row, column).setBackground(QtGui.QColor(255, 255, 255, 0))
+                    else:
+                        current_table.item(row, column).setBackground(QtGui.QColor(0, 255, 0, 70))
+
+            current_table.setRowHidden(row, isHidden)
+
 
 
     def open_dialog_insert_driver(self):
@@ -157,7 +186,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.insert_driver_SSI(surname, name, patronymic, date_of_birth, address, phone_number, license_number)
         self.new_dialog_insert_driver.close()
-        self.load_data_from_table("SELECT * FROM driver_SSI", self.ui.tableWidget)
+        self.view_data()
 
     def open_dialog_edit_driver(self):
         self.new_dialog_edit_driver = QtWidgets.QDialog()
@@ -196,7 +225,7 @@ class AdminWindow(QMainWindow):
         self.connection.edit_driver_SSI(surname, name, patronymic, date_of_birth, address, phone_number,
                                         license_number, driver_ID)
         self.new_dialog_edit_driver.close()
-        self.load_data_from_table("SELECT * FROM driver_SSI", self.ui.tableWidget)
+        self.view_data()
 
     def open_dialog_delete_driver(self):
         self.new_dialog_delete_driver = QtWidgets.QDialog()
@@ -212,7 +241,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.delete_driver_SSI(driver_ID)
         self.new_dialog_delete_driver.close()
-        self.load_data_from_table("SELECT * FROM driver_SSI", self.ui.tableWidget)
+        self.view_data()
 
     def open_dialog_insert_automobile(self):
         self.new_dialog_insert_automobile = QtWidgets.QDialog()
@@ -234,7 +263,7 @@ class AdminWindow(QMainWindow):
         self.connection.insert_automobile_SSI(license_plate, brand, color, mileage, year_of_release, engine_power,
                                               maximum_speed, fuel_cosumption)
         self.new_dialog_insert_automobile.close()
-        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
+        self.view_data()
 
     def open_dialog_edit_automobile(self):
         self.new_dialog_edit_automobile = QtWidgets.QDialog()
@@ -274,7 +303,7 @@ class AdminWindow(QMainWindow):
         self.connection.edit_automobile_SSI(license_plate, brand, color, mileage, year_of_release, engine_power,
                                               maximum_speed, fuel_cosumption, automobile_ID)
         self.new_dialog_edit_automobile.close()
-        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
+        self.view_data()
 
     def open_dialog_delete_automobile(self):
         self.new_dialog_delete_automobile = QtWidgets.QDialog()
@@ -290,7 +319,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.delete_automobile_SSI(automobile_ID)
         self.new_dialog_delete_automobile.close()
-        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
+        self.view_data()
 
 
     def open_dialog_insert_mechanic(self):
@@ -310,7 +339,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.insert_mechanic_SSI(surname, name, patronymic, date_of_birth, address, phone_number)
         self.new_dialog_insert_mechanic.close()
-        self.load_data_from_table("SELECT * FROM mechanic_SSI", self.ui.tableWidget_3)
+        self.view_data()
 
     def open_dialog_edit_mechanic(self):
         self.new_dialog_edit_mechanic = QtWidgets.QDialog()
@@ -346,7 +375,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.edit_mechanic_SSI(surname, name, patronymic, date_of_birth, address, phone_number, mechanic_ID)
         self.new_dialog_edit_mechanic.close()
-        self.load_data_from_table("SELECT * FROM mechanic_SSI", self.ui.tableWidget_3)
+        self.view_data()
 
     def open_dialog_delete_mechanic(self):
         self.new_dialog_delete_mechanic = QtWidgets.QDialog()
@@ -362,7 +391,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.delete_mechanic_SSI(mechanic_ID)
         self.new_dialog_delete_mechanic.close()
-        self.load_data_from_table("SELECT * FROM mechanic_SSI", self.ui.tableWidget_3)
+        self.view_data()
 
     def open_dialog_insert_client(self):
         self.new_dialog_insert_client = QtWidgets.QDialog()
@@ -379,7 +408,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.insert_client_SSI(surname, name, patronymic, phone_number)
         self.new_dialog_insert_client.close()
-        self.load_data_from_table("SELECT * FROM client_SSI", self.ui.tableWidget_4)
+        self.view_data()
 
     def open_dialog_edit_client(self):
         self.new_dialog_edit_client = QtWidgets.QDialog()
@@ -410,7 +439,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.edit_client_SSI(surname, name, patronymic, phone_number, client_ID)
         self.new_dialog_edit_client.close()
-        self.load_data_from_table("SELECT * FROM client_SSI", self.ui.tableWidget_4)
+        self.view_data()
 
     def open_dialog_delete_client(self):
         self.new_dialog_delete_client = QtWidgets.QDialog()
@@ -426,7 +455,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.delete_client_SSI(client_ID)
         self.new_dialog_delete_client.close()
-        self.load_data_from_table("SELECT * FROM client_SSI", self.ui.tableWidget_4)
+        self.view_data()
 
     def open_dialog_insert_order(self):
         self.new_dialog_insert_order = QtWidgets.QDialog()
@@ -448,7 +477,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.insert_order_SSI(datetime, description, depatrure_address, delivery_address, client_ID, trip_ID)
         self.new_dialog_insert_order.close()
-        self.load_data_from_table("SELECT * FROM order_SSI", self.ui.tableWidget_5)
+        self.view_data()
 
     def open_dialog_edit_order(self):
         self.new_dialog_edit_order = QtWidgets.QDialog()
@@ -477,7 +506,6 @@ class AdminWindow(QMainWindow):
         self.ui_dialog_edit_order.comboBox_3.setCurrentIndex(self.ui_dialog_edit_order.comboBox_3.findText(
             current_column_data[6]))
 
-
     def edit_order(self):
         order_ID = self.ui_dialog_edit_order.comboBox.currentText()
 
@@ -490,7 +518,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.edit_order_SSI(datetime, description, depatrure_address, delivery_address, client_ID, trip_ID, order_ID)
         self.new_dialog_edit_order.close()
-        self.load_data_from_table("SELECT * FROM order_SSI", self.ui.tableWidget_5)
+        self.view_data()
 
     def open_dialog_delete_order(self):
         self.new_dialog_delete_order = QtWidgets.QDialog()
@@ -506,7 +534,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.delete_order_SSI(order_ID)
         self.new_dialog_delete_order.close()
-        self.load_data_from_table("SELECT * FROM order_SSI", self.ui.tableWidget_5)
+        self.view_data()
 
     def open_dialog_insert_trip(self):
         self.new_dialog_insert_trip = QtWidgets.QDialog()
@@ -528,7 +556,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.insert_trip_SSI(date, departure_time, arrival_time, mileage, driver_ID, automobile_ID)
         self.new_dialog_insert_trip.close()
-        self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
+        self.view_data()
 
     def open_dialog_edit_trip(self):
         self.new_dialog_edit_trip = QtWidgets.QDialog()
@@ -571,7 +599,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.edit_trip_SSI(date, departure_time, arrival_time, mileage, driver_ID, automobile_ID, trip_ID)
         self.new_dialog_edit_trip.close()
-        self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
+        self.view_data()
 
     def open_dialog_delete_trip(self):
         self.new_dialog_delete_trip = QtWidgets.QDialog()
@@ -587,7 +615,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.delete_trip_SSI(trip_ID)
         self.new_dialog_delete_trip.close()
-        self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
+        self.view_data()
 
     def open_dialog_insert_service(self):
         self.new_dialog_insert_service = QtWidgets.QDialog()
@@ -608,7 +636,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.insert_service_SSI(datetime, title, description, automobile_ID, mechanic_ID)
         self.new_dialog_insert_service.close()
-        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+        self.view_data()
 
     def open_dialog_edit_service(self):
         self.new_dialog_edit_service = QtWidgets.QDialog()
@@ -649,7 +677,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.edit_service_SSI(datetime, title, description, automobile_ID, mechanic_ID, service_ID)
         self.new_dialog_edit_service.close()
-        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+        self.view_data()
 
     def open_dialog_delete_service(self):
         self.new_dialog_delete_service = QtWidgets.QDialog()
@@ -665,7 +693,7 @@ class AdminWindow(QMainWindow):
 
         self.connection.delete_service_SSI(service_ID)
         self.new_dialog_delete_service.close()
-        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+        self.view_data()
 
     def open_dialog_edit_authorization(self):
         self.new_dialog_edit_authorization = QtWidgets.QDialog()
@@ -692,4 +720,4 @@ class AdminWindow(QMainWindow):
 
         self.connection.edit_authorization_SSI(login, password, authorization_ID)
         self.new_dialog_edit_authorization.close()
-        self.load_data_from_table("SELECT * FROM authorization_SSI", self.ui.tableWidget_9)
+        self.view_data()

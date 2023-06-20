@@ -121,12 +121,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
-        self.pushButton_12 = QPushButton(self.widget_2)
-        self.pushButton_12.setObjectName(u"pushButton_12")
-        self.pushButton_12.setCheckable(True)
-        self.pushButton_12.setAutoExclusive(True)
+        self.pushButton_exit_2 = QPushButton(self.widget_2)
+        self.pushButton_exit_2.setObjectName(u"pushButton_exit_2")
+        self.pushButton_exit_2.setCheckable(True)
+        self.pushButton_exit_2.setAutoExclusive(True)
 
-        self.verticalLayout_2.addWidget(self.pushButton_12)
+        self.verticalLayout_2.addWidget(self.pushButton_exit_2)
 
 
         self.gridLayout.addWidget(self.widget_2, 0, 1, 1, 1)
@@ -196,97 +196,6 @@ class Ui_MainWindow(object):
 
         self.stackedWidget = QStackedWidget(self.widget_3)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        self.page_9 = QWidget()
-        self.page_9.setObjectName(u"page_9")
-        self.verticalLayout_4 = QVBoxLayout(self.page_9)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.label_9 = QLabel(self.page_9)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setMinimumSize(QSize(0, 40))
-        self.label_9.setMaximumSize(QSize(16777215, 60))
-        self.label_9.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-
-        self.verticalLayout_4.addWidget(self.label_9)
-
-        self.gridLayout_9 = QGridLayout()
-        self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.label_5 = QLabel(self.page_9)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setMaximumSize(QSize(16777215, 200))
-
-        self.gridLayout_9.addWidget(self.label_5, 2, 0, 1, 1)
-
-        self.l_4 = QLabel(self.page_9)
-        self.l_4.setObjectName(u"l_4")
-        self.l_4.setMinimumSize(QSize(300, 0))
-
-        self.gridLayout_9.addWidget(self.l_4, 3, 1, 1, 1)
-
-        self.name = QLabel(self.page_9)
-        self.name.setObjectName(u"name")
-        self.name.setMaximumSize(QSize(16777215, 200))
-
-        self.gridLayout_9.addWidget(self.name, 1, 0, 1, 1)
-
-        self.label_6 = QLabel(self.page_9)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setMaximumSize(QSize(16777215, 200))
-
-        self.gridLayout_9.addWidget(self.label_6, 3, 0, 1, 1)
-
-        self.surname = QLabel(self.page_9)
-        self.surname.setObjectName(u"surname")
-        self.surname.setMaximumSize(QSize(16777215, 200))
-
-        self.gridLayout_9.addWidget(self.surname, 0, 0, 1, 1)
-
-        self.l_5 = QLabel(self.page_9)
-        self.l_5.setObjectName(u"l_5")
-        self.l_5.setMinimumSize(QSize(300, 0))
-
-        self.gridLayout_9.addWidget(self.l_5, 4, 1, 1, 1)
-
-        self.label_7 = QLabel(self.page_9)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setMaximumSize(QSize(16777215, 200))
-
-        self.gridLayout_9.addWidget(self.label_7, 4, 0, 1, 1)
-
-        self.l_1 = QLabel(self.page_9)
-        self.l_1.setObjectName(u"l_1")
-
-        self.gridLayout_9.addWidget(self.l_1, 0, 1, 1, 1)
-
-        self.l_3 = QLabel(self.page_9)
-        self.l_3.setObjectName(u"l_3")
-
-        self.gridLayout_9.addWidget(self.l_3, 2, 1, 1, 1)
-
-        self.l_2 = QLabel(self.page_9)
-        self.l_2.setObjectName(u"l_2")
-
-        self.gridLayout_9.addWidget(self.l_2, 1, 1, 1, 1)
-
-        self.label_8 = QLabel(self.page_9)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setMaximumSize(QSize(250, 100))
-
-        self.gridLayout_9.addWidget(self.label_8, 5, 0, 1, 1)
-
-        self.l_6 = QLabel(self.page_9)
-        self.l_6.setObjectName(u"l_6")
-        self.l_6.setMinimumSize(QSize(300, 0))
-
-        self.gridLayout_9.addWidget(self.l_6, 5, 1, 1, 1)
-
-
-        self.verticalLayout_4.addLayout(self.gridLayout_9)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_4.addItem(self.verticalSpacer_3)
-
-        self.stackedWidget.addWidget(self.page_9)
         self.page_1 = QWidget()
         self.page_1.setObjectName(u"page_1")
         self.gridLayout_8 = QGridLayout(self.page_1)
@@ -319,9 +228,6 @@ class Ui_MainWindow(object):
         self.gridLayout_8.addWidget(self.tableWidget, 0, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.page_1)
-        self.page_8 = QWidget()
-        self.page_8.setObjectName(u"page_8")
-        self.stackedWidget.addWidget(self.page_8)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.gridLayout_7 = QGridLayout(self.page_2)
@@ -483,6 +389,97 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.tableWidget_7, 0, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.page_7)
+        self.page_8 = QWidget()
+        self.page_8.setObjectName(u"page_8")
+        self.verticalLayout_4 = QVBoxLayout(self.page_8)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.label_9 = QLabel(self.page_8)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setMinimumSize(QSize(0, 40))
+        self.label_9.setMaximumSize(QSize(16777215, 60))
+        self.label_9.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+
+        self.verticalLayout_4.addWidget(self.label_9)
+
+        self.gridLayout_9 = QGridLayout()
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.label_5 = QLabel(self.page_8)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setMaximumSize(QSize(16777215, 200))
+
+        self.gridLayout_9.addWidget(self.label_5, 2, 0, 1, 1)
+
+        self.l_4 = QLabel(self.page_8)
+        self.l_4.setObjectName(u"l_4")
+        self.l_4.setMinimumSize(QSize(300, 0))
+
+        self.gridLayout_9.addWidget(self.l_4, 3, 1, 1, 1)
+
+        self.name = QLabel(self.page_8)
+        self.name.setObjectName(u"name")
+        self.name.setMaximumSize(QSize(16777215, 200))
+
+        self.gridLayout_9.addWidget(self.name, 1, 0, 1, 1)
+
+        self.label_6 = QLabel(self.page_8)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setMaximumSize(QSize(16777215, 200))
+
+        self.gridLayout_9.addWidget(self.label_6, 3, 0, 1, 1)
+
+        self.surname = QLabel(self.page_8)
+        self.surname.setObjectName(u"surname")
+        self.surname.setMaximumSize(QSize(16777215, 200))
+
+        self.gridLayout_9.addWidget(self.surname, 0, 0, 1, 1)
+
+        self.l_5 = QLabel(self.page_8)
+        self.l_5.setObjectName(u"l_5")
+        self.l_5.setMinimumSize(QSize(300, 0))
+
+        self.gridLayout_9.addWidget(self.l_5, 4, 1, 1, 1)
+
+        self.label_7 = QLabel(self.page_8)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setMaximumSize(QSize(16777215, 200))
+
+        self.gridLayout_9.addWidget(self.label_7, 4, 0, 1, 1)
+
+        self.l_1 = QLabel(self.page_8)
+        self.l_1.setObjectName(u"l_1")
+
+        self.gridLayout_9.addWidget(self.l_1, 0, 1, 1, 1)
+
+        self.l_3 = QLabel(self.page_8)
+        self.l_3.setObjectName(u"l_3")
+
+        self.gridLayout_9.addWidget(self.l_3, 2, 1, 1, 1)
+
+        self.l_2 = QLabel(self.page_8)
+        self.l_2.setObjectName(u"l_2")
+
+        self.gridLayout_9.addWidget(self.l_2, 1, 1, 1, 1)
+
+        self.label_8 = QLabel(self.page_8)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setMaximumSize(QSize(250, 100))
+
+        self.gridLayout_9.addWidget(self.label_8, 5, 0, 1, 1)
+
+        self.l_6 = QLabel(self.page_8)
+        self.l_6.setObjectName(u"l_6")
+        self.l_6.setMinimumSize(QSize(300, 0))
+
+        self.gridLayout_9.addWidget(self.l_6, 5, 1, 1, 1)
+
+
+        self.verticalLayout_4.addLayout(self.gridLayout_9)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer_3)
+
+        self.stackedWidget.addWidget(self.page_8)
 
         self.verticalLayout_3.addWidget(self.stackedWidget)
 
@@ -512,16 +509,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
-        self.pushButton_10 = QPushButton(self.widget)
-        self.pushButton_10.setObjectName(u"pushButton_10")
+        self.pushButton_exit_1 = QPushButton(self.widget)
+        self.pushButton_exit_1.setObjectName(u"pushButton_exit_1")
         icon = QIcon()
         icon.addFile(u"icons/exit.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_10.setIcon(icon)
-        self.pushButton_10.setIconSize(QSize(32, 32))
-        self.pushButton_10.setCheckable(True)
-        self.pushButton_10.setAutoExclusive(True)
+        self.pushButton_exit_1.setIcon(icon)
+        self.pushButton_exit_1.setIconSize(QSize(32, 32))
+        self.pushButton_exit_1.setCheckable(True)
+        self.pushButton_exit_1.setAutoExclusive(True)
 
-        self.verticalLayout.addWidget(self.pushButton_10)
+        self.verticalLayout.addWidget(self.pushButton_exit_1)
 
 
         self.gridLayout.addWidget(self.widget, 0, 0, 1, 1)
@@ -531,10 +528,10 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.pushButton_menu.toggled.connect(self.widget.setVisible)
         self.pushButton_menu.toggled.connect(self.widget_2.setHidden)
-        self.pushButton_10.clicked.connect(MainWindow.close)
-        self.pushButton_12.clicked.connect(MainWindow.close)
+        self.pushButton_exit_1.clicked.connect(MainWindow.close)
+        self.pushButton_exit_2.clicked.connect(MainWindow.close)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -551,23 +548,10 @@ class Ui_MainWindow(object):
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043a\u0430\u0437\u044b", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0435\u0437\u0434\u043a\u0438", None))
         self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u043c\u043e\u043d\u0442\u044b", None))
-        self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434", None))
+        self.pushButton_exit_2.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434", None))
         self.pushButton_menu.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0435\u043d\u044e", None))
         self.pushButton_search.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.pushButton_account.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u043a\u0430\u0443\u043d\u0442", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:36pt; font-weight:600; text-decoration: underline; color:#191919;\">\u0421\u0412\u0415\u0414\u0415\u041d\u0418\u042f \u041e \u0420\u0410\u0411\u041e\u0422\u041d\u0418\u041a\u0415</span></p></body></html>", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e:</span></p></body></html>", None))
-        self.l_4.setText("")
-        self.name.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0418\u043c\u044f:</span></p></body></html>", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0414\u0430\u0442\u0430 \u0440\u043e\u0436\u0434\u0435\u043d\u0438\u044f:</span></p></body></html>", None))
-        self.surname.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0424\u0430\u043c\u0438\u043b\u0438\u044f:</span></p></body></html>", None))
-        self.l_5.setText("")
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0410\u0434\u0440\u0435\u0441:</span></p></body></html>", None))
-        self.l_1.setText("")
-        self.l_3.setText("")
-        self.l_2.setText("")
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430:</span></p></body></html>", None))
-        self.l_6.setText("")
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ID", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
@@ -666,7 +650,20 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem47.setText(QCoreApplication.translate("MainWindow", u"ID \u0430\u0432\u0442\u043e\u043c\u043e\u0431\u0438\u043b\u044f", None));
         ___qtablewidgetitem48 = self.tableWidget_7.horizontalHeaderItem(5)
         ___qtablewidgetitem48.setText(QCoreApplication.translate("MainWindow", u"ID \u043c\u0435\u0445\u0430\u043d\u0438\u043a\u0430", None));
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:36pt; font-weight:600; text-decoration: underline; color:#191919;\">\u0421\u0412\u0415\u0414\u0415\u041d\u0418\u042f \u041e \u0420\u0410\u0411\u041e\u0422\u041d\u0418\u041a\u0415</span></p></body></html>", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e:</span></p></body></html>", None))
+        self.l_4.setText("")
+        self.name.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0418\u043c\u044f:</span></p></body></html>", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0414\u0430\u0442\u0430 \u0440\u043e\u0436\u0434\u0435\u043d\u0438\u044f:</span></p></body></html>", None))
+        self.surname.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0424\u0430\u043c\u0438\u043b\u0438\u044f:</span></p></body></html>", None))
+        self.l_5.setText("")
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u0410\u0434\u0440\u0435\u0441:</span></p></body></html>", None))
+        self.l_1.setText("")
+        self.l_3.setText("")
+        self.l_2.setText("")
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:600;\">\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430:</span></p></body></html>", None))
+        self.l_6.setText("")
         self.label_1.setText("")
-        self.pushButton_10.setText("")
+        self.pushButton_exit_1.setText("")
     # retranslateUi
 

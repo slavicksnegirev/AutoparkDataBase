@@ -1,9 +1,7 @@
-import pandas as pd
 import openpyxl
 import mysql.connector
 
 from mysql.connector import Error
-
 
 
 class DataBase():
@@ -240,8 +238,7 @@ class DataBase():
         return result
 
 
-
-    def get_all_workers_lastname(self):
+    def get_workers_fullnames(self):
         query = """SELECT concat(surname, SPACE(1), name, SPACE(1), patronymic) as fullname
         FROM driver_SSI
         UNION SELECT concat(surname, SPACE(1), name, SPACE(1), patronymic) as fullname FROM mechanic_SSI;
@@ -251,7 +248,8 @@ class DataBase():
 
         return result
 
-    def check_authorization(self, login, password):
+
+    def check_login_details(self, login, password):
         query = f"""SELECT EXISTS(SELECT * FROM authorization_SSI WHERE login = '{login}' and password = '{password}')"""
         return self.execute_read_query(query)
 

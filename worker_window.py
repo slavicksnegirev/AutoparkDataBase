@@ -1,31 +1,9 @@
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QMainWindow, QTableWidgetItem
-from PySide6.QtCore import QDate, QDateTime
 
 from ui_worker import Ui_MainWindow
-from ui_dialog_insert_driver import Ui_dialog_insert_driver
-from ui_dialog_edit_driver import Ui_dialog_edit_driver
-from ui_dialog_delete_driver import Ui_dialog_delete_driver
-from ui_dialog_insert_automobile import Ui_dialog_insert_automobile
-from ui_dialog_edit_automobile import Ui_dialog_edit_automobile
-from ui_dialog_delete_automobile import Ui_dialog_delete_automobile
-from ui_dialog_insert_mechanic import Ui_dialog_insert_mechanic
-from ui_dialog_edit_mechanic import Ui_dialog_edit_mechanic
-from ui_dialog_delete_mechanic import Ui_dialog_delete_mechanic
-from ui_dialog_insert_client import Ui_dialog_insert_client
-from ui_dialog_edit_client import Ui_dialog_edit_client
-from ui_dialog_delete_client import Ui_dialog_delete_client
-from ui_dialog_insert_order import Ui_dialog_insert_order
-from ui_dialog_edit_order import Ui_dialog_edit_order
-from ui_dialog_delete_order import Ui_dialog_delete_order
-from ui_dialog_insert_trip import Ui_dialog_insert_trip
-from ui_dialog_edit_trip import Ui_dialog_edit_trip
-from ui_dialog_delete_trip import Ui_dialog_delete_trip
-from ui_dialog_insert_service import Ui_dialog_insert_service
-from ui_dialog_edit_service import Ui_dialog_edit_service
-from ui_dialog_delete_service import Ui_dialog_delete_service
-from ui_dialog_edit_authorization import Ui_dialog_edit_authorization
+
 
 class WorkerWindow(QMainWindow):
     def __init__(self, authorization_window, connection):
@@ -34,10 +12,8 @@ class WorkerWindow(QMainWindow):
         self.connection = connection
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
         self.ui.widget.hide()
         self.ui.pushButton_1.setChecked(True)
-        self.ui.stackedWidget.setCurrentIndex(1)
 
         self.view_data()
         self.button_clicked()
@@ -54,13 +30,12 @@ class WorkerWindow(QMainWindow):
         self.ui.pushButton_5.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_5))
         self.ui.pushButton_6.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_6))
         self.ui.pushButton_7.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_7))
-        self.ui.pushButton_account.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_9))
-        self.ui.pushButton_search.clicked.connect(lambda: self.on_search_bnt())
+        self.ui.pushButton_account.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_8))
+        self.ui.pushButton_search.clicked.connect(lambda: self.on_search_button())
+        self.ui.pushButton_exit_1.clicked.connect(lambda: self.close_window())
+        self.ui.pushButton_exit_2.clicked.connect(lambda: self.close_window())
 
-        self.ui.pushButton_10.clicked.connect(lambda: self.close_window())
-        self.ui.pushButton_12.clicked.connect(lambda: self.close_window())
-
-    def load_data_from_table(self, query, table):
+    def get_data_from_db(self, query, table):
         result = self.connection.execute_read_query(query)
         table.setRowCount(len(result))
 
@@ -70,15 +45,6 @@ class WorkerWindow(QMainWindow):
 
         for i in range(len(result)):
             table.resizeColumnToContents(i)
-
-    def get_data_from_table(self, table, text):
-        array = list()
-        for i in range(table.rowCount()):
-            for j in range(table.columnCount()):
-                table.item(i,j).setBackground(QtGui.QColor(255, 255, 255, 0))
-                if text in table.item(i, j).text():
-                    array.append([i , j])
-        return array
 
     def get_data_from_table_column(self, table, j):
         data = list()
@@ -93,20 +59,32 @@ class WorkerWindow(QMainWindow):
         return data
 
     def view_data(self):
-        self.load_data_from_table("SELECT * FROM driver_SSI", self.ui.tableWidget)
-        self.load_data_from_table("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
-        self.load_data_from_table("SELECT * FROM mechanic_SSI", self.ui.tableWidget_3)
-        self.load_data_from_table("SELECT * FROM client_SSI", self.ui.tableWidget_4)
-        self.load_data_from_table("SELECT * FROM order_SSI", self.ui.tableWidget_5)
-        self.load_data_from_table("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
-        self.load_data_from_table("SELECT * FROM service_SSI", self.ui.tableWidget_7)
+        self.get_data_from_db("SELECT * FROM driver_SSI", self.ui.tableWidget)
+        self.get_data_from_db("SELECT * FROM automobile_SSI", self.ui.tableWidget_2)
+        self.get_data_from_db("SELECT * FROM mechanic_SSI", self.ui.tableWidget_3)
+        self.get_data_from_db("SELECT * FROM client_SSI", self.ui.tableWidget_4)
+        self.get_data_from_db("SELECT * FROM order_SSI", self.ui.tableWidget_5)
+        self.get_data_from_db("SELECT * FROM trip_SSI", self.ui.tableWidget_6)
+        self.get_data_from_db("SELECT * FROM service_SSI", self.ui.tableWidget_7)
 
-    def on_search_bnt(self):
-        self.ui.stackedWidget.currentChanged
-        array = self.get_data_from_table(self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()[len(
-            self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children())-1], self.ui.lineEdit.text())
-        for item in array:
-            self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()[len(self.ui.stackedWidget.widget((self.ui.stackedWidget.currentIndex())).children()) - 1].item(item[0], item[1]).setBackground(QtGui.QColor(0, 255, 0, 70))
+    def on_search_button(self):
+        self.view_data()
+        current_page = self.ui.stackedWidget.widget(self.ui.stackedWidget.currentIndex())
+        current_table = current_page.children()[len(current_page.children())-1]
+        request = self.ui.lineEdit.text().lower()
+
+        for row in range(current_table.rowCount()):
+            isHidden = True
+            for column in range(current_table.columnCount()):
+                item = current_table.item(row, column)
+                if request in item.text().lower():
+                    isHidden = False
+                    if request == '':
+                        current_table.item(row, column).setBackground(QtGui.QColor(255, 255, 255, 0))
+                    else:
+                        current_table.item(row, column).setBackground(QtGui.QColor(0, 255, 0, 70))
+
+            current_table.setRowHidden(row, isHidden)
 
     def get_worker_data(self, fullname):
         self.surname = fullname.split()[0]
