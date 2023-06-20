@@ -1254,7 +1254,7 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-100</y>
+                <y>0</y>
                 <width>674</width>
                 <height>566</height>
                </rect>
@@ -1477,7 +1477,7 @@
                   <widget class="QComboBox" name="comboBox_2"/>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QDateEdit" name="dateEdit_3">
+                  <widget class="QDateEdit" name="dateEdit_4">
                    <property name="displayFormat">
                     <string>yyyy-MM-dd</string>
                    </property>
@@ -1505,7 +1505,7 @@
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QDateEdit" name="dateEdit_4">
+                  <widget class="QDateEdit" name="dateEdit_3">
                    <property name="displayFormat">
                     <string>yyyy-MM-dd</string>
                    </property>
@@ -1549,12 +1549,12 @@
                     </font>
                    </property>
                    <property name="text">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Машина:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Водитель:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QDateEdit" name="dateEdit_6">
+                  <widget class="QDateEdit" name="dateEdit_5">
                    <property name="displayFormat">
                     <string>yyyy-MM-dd</string>
                    </property>
@@ -1564,7 +1564,7 @@
                   <widget class="QComboBox" name="comboBox_3"/>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QDateEdit" name="dateEdit_5">
+                  <widget class="QDateEdit" name="dateEdit_6">
                    <property name="displayFormat">
                     <string>yyyy-MM-dd</string>
                    </property>

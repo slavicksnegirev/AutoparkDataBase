@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets, QtGui
-from PySide6.QtWidgets import QMainWindow, QTableWidgetItem
+from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QMessageBox
 from PySide6.QtCore import QDate, QDateTime
 
 from ui_admin import Ui_MainWindow
@@ -79,9 +79,9 @@ class AdminWindow(QMainWindow):
         self.ui.pushButton_delete_7.clicked.connect(lambda: self.open_dialog_delete_service())
         self.ui.pushButton_edit_9.clicked.connect(lambda: self.open_dialog_edit_authorization())
 
-        self.ui.report_1.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_1()))
-        self.ui.report_2.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_2()))
-        self.ui.report_3.clicked.connect(lambda: self.connection.load_data_to_xlsx(self.connection.report_3()))
+        self.ui.report_1.clicked.connect(lambda: self.report_1())
+        self.ui.report_2.clicked.connect(lambda: self.report_2())
+        self.ui.report_3.clicked.connect(lambda: self.report_3())
 
         self.ui.pushButton_search.clicked.connect(lambda: self.on_search_button())
         self.ui.pushButton_exit_1.clicked.connect(lambda: self.close_window())
@@ -712,6 +712,57 @@ class AdminWindow(QMainWindow):
 
         self.ui_dialog_edit_authorization.fullname.setText(current_column_data[1])
         self.ui_dialog_edit_authorization.lineEdit_2.setText(current_column_data[2])
+
+    def report_1(self):
+        license_plate = self.ui.comboBox_1.currentText().split()[0]
+        brand = self.ui.comboBox_1.currentText().split()[1]
+        year_of_release = self.ui.comboBox_1.currentText().split()[2]
+        start = self.ui.dateEdit_1.text()
+        end = self.ui.dateEdit_2.text()
+
+        self.connection.load_data_to_xlsx(self.connection.report_1(license_plate, brand, year_of_release, start, end))
+        self.info_window()
+
+    def report_2(self):
+        surname = self.ui.comboBox_2.currentText().split()[0]
+        name = self.ui.comboBox_2.currentText().split()[1]
+        patronymic = self.ui.comboBox_2.currentText().split()[2]
+        start = self.ui.dateEdit_3.text()
+        end = self.ui.dateEdit_4.text()
+
+        self.connection.load_data_to_xlsx(self.connection.report_2(surname, name, patronymic, start, end))
+        self.info_window()
+
+    def report_3(self):
+        surname = self.ui.comboBox_3.currentText().split()[0]
+        name = self.ui.comboBox_3.currentText().split()[1]
+        patronymic = self.ui.comboBox_3.currentText().split()[2]
+        start = self.ui.dateEdit_5.text()
+        end = self.ui.dateEdit_6.text()
+
+        self.connection.load_data_to_xlsx(self.connection.report_3(surname, name, patronymic, start, end))
+        self.info_window()
+
+    def info_window(self):
+        # info_window = QMessageBox
+        # info_window.setWindowTitle("Информационное окно")
+        # info_window.setText(""" Отчет успешно импортирован в файл "output.xlsx" """)
+        # info_window.exec()
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+
+        # setting message for Message Box
+        msg.setText(""" Отчет успешно импортирован в файл "output.xlsx" """)
+
+        # setting Message box window title
+        msg.setWindowTitle("Information MessageBox")
+
+        # declaring buttons on Message Box
+        msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+
+        # start the app
+        retval = msg.exec_()
+
 
     def edit_authorization(self):
         authorization_ID = self.ui_dialog_edit_authorization.comboBox.currentText()

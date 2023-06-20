@@ -254,36 +254,42 @@ class DataBase():
         return self.execute_read_query(query)
 
 
-    def report_1(self):
+    def report_1(self, license_plate, brand, year_of_release, start, end):
         query = f"""
-        select date,
-        concat(dS.surname, space(1), dS.name, space(1), dS.patronymic) as driver,
-        concat(aSS.brand, space(1), aSS.color, space(1), aSS.year_of_release) as car
-        from order_SSI oS
-        left join trip_SSI tS on ts.trip_ID = oS.trip_ID
-        left join automobile_SSI aSS on tS.automobile_ID = aSS.automobile_ID
-        left join driver_SSI dS on tS.driver_ID = dS.driver_ID
-        """
-        return self.execute_read_query(query)
-
-    def report_2(self):
-        query = f"""
-        select date,
-        concat(driver_SSI.surname, space(1), driver_SSI.name, space(1), driver_SSI.patronymic) as driver,
-        concat(automobile_SSI.brand, space(1), automobile_SSI.color, space(1), automobile_SSI.year_of_release) as car
+        select  trip_SSI.date,
+                concat(automobile_SSI.license_plate, space(1), automobile_SSI.brand, space(1), automobile_SSI.year_of_release) as car,
+                concat(driver_SSI.surname, space(1), driver_SSI.name, space(1), driver_SSI.patronymic) as driver
         from trip_SSI
-        join driver_SSI on trip_SSI.driver_ID = driver_SSI.driver_ID
-        join automobile_SSI on trip_SSI.automobile_ID = automobile_SSI.automobile_ID;
+                 join driver_SSI on trip_SSI.driver_ID = driver_SSI.driver_ID
+                 join automobile_SSI on trip_SSI.automobile_ID = automobile_SSI.automobile_ID
+        where automobile_SSI.license_plate = "{license_plate}" and automobile_SSI.brand = "{brand}" and 
+        automobile_SSI.year_of_release = "{year_of_release}" and date > "{start}" and date < "{end}";
         """
         return self.execute_read_query(query)
 
-    def report_3(self):
+    def report_2(self, surname, name, patronymic, start, end):
         query = f"""
         select datetime,
-        concat(mechanic_SSI.surname, space(1), mechanic_SSI.name, space(1), mechanic_SSI.patronymic) as mechanic,
-        concat(automobile_SSI.brand, space(1), automobile_SSI.color, space(1), automobile_SSI.year_of_release) as car
-        from service_SSI
-        join mechanic_SSI on service_SSI.mechanic_ID = mechanic_SSI.mechanic_ID
-        join automobile_SSI on service_SSI.automobile_ID = automobile_SSI.automobile_ID;
+                concat(mechanic_SSI.surname, space(1), mechanic_SSI.name, space(1), mechanic_SSI.patronymic) as mechanic,
+                concat(automobile_SSI.license_plate, space(1), automobile_SSI.brand, space(1), automobile_SSI.year_of_release) as car
+        from   service_SSI
+                join mechanic_SSI on service_SSI.mechanic_ID = mechanic_SSI.mechanic_ID
+                join automobile_SSI on service_SSI.automobile_ID = automobile_SSI.automobile_ID
+        where mechanic_SSI.surname = "{surname}" and mechanic_SSI.name = "{name}" and mechanic_SSI.patronymic = "{patronymic}" 
+        and service_SSI.datetime > "{start}" and service_SSI.datetime < "{end}";
+        """
+        return self.execute_read_query(query)
+
+    def report_3(self, surname, name, patronymic, start, end):
+        query = f"""
+        select date,
+            concat(dS.surname, space(1), dS.name, space(1), dS.patronymic) as driver,
+            concat(aSS.license_plate, space(1), aSS.brand, space(1), aSS.year_of_release) as car
+        from order_SSI oS
+            left join trip_SSI tS on ts.trip_ID = oS.trip_ID
+            left join automobile_SSI aSS on tS.automobile_ID = aSS.automobile_ID
+            left join driver_SSI dS on tS.driver_ID = dS.driver_ID
+        where ds.surname = "{surname}" and ds.name = "{name}" and ds.patronymic = "{patronymic}" and tS.date > 
+        "{start}" and tS.date < "{end}";
         """
         return self.execute_read_query(query)

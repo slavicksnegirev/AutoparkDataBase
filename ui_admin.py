@@ -666,7 +666,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -100, 674, 566))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 674, 566))
         self.verticalLayout_6 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.report1 = QLabel(self.scrollAreaWidgetContents)
@@ -772,10 +772,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.comboBox_2, 0, 1, 1, 1)
 
-        self.dateEdit_3 = QDateEdit(self.scrollAreaWidgetContents)
-        self.dateEdit_3.setObjectName(u"dateEdit_3")
+        self.dateEdit_4 = QDateEdit(self.scrollAreaWidgetContents)
+        self.dateEdit_4.setObjectName(u"dateEdit_4")
 
-        self.gridLayout_10.addWidget(self.dateEdit_3, 2, 1, 1, 1)
+        self.gridLayout_10.addWidget(self.dateEdit_4, 2, 1, 1, 1)
 
         self.end_2 = QLabel(self.scrollAreaWidgetContents)
         self.end_2.setObjectName(u"end_2")
@@ -785,10 +785,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.end_2, 2, 0, 1, 1)
 
-        self.dateEdit_4 = QDateEdit(self.scrollAreaWidgetContents)
-        self.dateEdit_4.setObjectName(u"dateEdit_4")
+        self.dateEdit_3 = QDateEdit(self.scrollAreaWidgetContents)
+        self.dateEdit_3.setObjectName(u"dateEdit_3")
 
-        self.gridLayout_10.addWidget(self.dateEdit_4, 1, 1, 1, 1)
+        self.gridLayout_10.addWidget(self.dateEdit_3, 1, 1, 1, 1)
 
         self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -811,20 +811,20 @@ class Ui_MainWindow(object):
 
         self.gridLayout_11.addWidget(self.driver, 0, 0, 1, 1)
 
-        self.dateEdit_6 = QDateEdit(self.scrollAreaWidgetContents)
-        self.dateEdit_6.setObjectName(u"dateEdit_6")
+        self.dateEdit_5 = QDateEdit(self.scrollAreaWidgetContents)
+        self.dateEdit_5.setObjectName(u"dateEdit_5")
 
-        self.gridLayout_11.addWidget(self.dateEdit_6, 1, 1, 1, 1)
+        self.gridLayout_11.addWidget(self.dateEdit_5, 1, 1, 1, 1)
 
         self.comboBox_3 = QComboBox(self.scrollAreaWidgetContents)
         self.comboBox_3.setObjectName(u"comboBox_3")
 
         self.gridLayout_11.addWidget(self.comboBox_3, 0, 1, 1, 1)
 
-        self.dateEdit_5 = QDateEdit(self.scrollAreaWidgetContents)
-        self.dateEdit_5.setObjectName(u"dateEdit_5")
+        self.dateEdit_6 = QDateEdit(self.scrollAreaWidgetContents)
+        self.dateEdit_6.setObjectName(u"dateEdit_6")
 
-        self.gridLayout_11.addWidget(self.dateEdit_5, 2, 1, 1, 1)
+        self.gridLayout_11.addWidget(self.dateEdit_6, 2, 1, 1, 1)
 
         self.start_3 = QLabel(self.scrollAreaWidgetContents)
         self.start_3.setObjectName(u"start_3")
@@ -1076,13 +1076,13 @@ class Ui_MainWindow(object):
         self.report_2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043e\u0442\u0447\u0435\u0442", None))
         self.start_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u041d\u0430\u0447\u0430\u043b\u043e \u043e\u0442\u0447\u0435\u0442\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0438\u043e\u0434\u0430:</span></p></body></html>", None))
         self.mechanic.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u041c\u0435\u0445\u0430\u043d\u0438\u043a:</span></p></body></html>", None))
-        self.dateEdit_3.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
-        self.end_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u041a\u043e\u043d\u0435\u0446 \u043e\u0442\u0447\u0435\u0442\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0438\u043e\u0434\u0430:</span></p></body></html>", None))
         self.dateEdit_4.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
+        self.end_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u041a\u043e\u043d\u0435\u0446 \u043e\u0442\u0447\u0435\u0442\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0438\u043e\u0434\u0430:</span></p></body></html>", None))
+        self.dateEdit_3.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
         self.report3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt; font-weight:600; text-decoration: underline;\">\u041e\u0442\u0447\u0435\u0442 \u21163</span><span style=\" font-size:14pt;\"> - \u0432\u044b\u0432\u043e\u0434 \u0432\u0441\u0435\u0445 \u043f\u043e\u0435\u0437\u0434\u043e\u043a \u043a\u043e\u043d\u0442\u0440\u0435\u043a\u0442\u043d\u043e\u0433\u043e \u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f \u0437\u0430 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u043f\u0435\u0440\u0438\u043e\u0434</span></p></body></html>", None))
-        self.driver.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u041c\u0430\u0448\u0438\u043d\u0430:</span></p></body></html>", None))
-        self.dateEdit_6.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
+        self.driver.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u0412\u043e\u0434\u0438\u0442\u0435\u043b\u044c:</span></p></body></html>", None))
         self.dateEdit_5.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
+        self.dateEdit_6.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
         self.start_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u041d\u0430\u0447\u0430\u043b\u043e \u043e\u0442\u0447\u0435\u0442\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0438\u043e\u0434\u0430:</span></p></body></html>", None))
         self.end_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:14pt;\">\u041a\u043e\u043d\u0435\u0446 \u043e\u0442\u0447\u0435\u0442\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0438\u043e\u0434\u0430:</span></p></body></html>", None))
         self.report_3.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0444\u043e\u0440\u043c\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043e\u0442\u0447\u0435\u0442", None))
