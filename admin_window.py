@@ -744,23 +744,11 @@ class AdminWindow(QMainWindow):
         self.info_window()
 
     def info_window(self):
-        # info_window = QMessageBox
-        # info_window.setWindowTitle("Информационное окно")
-        # info_window.setText(""" Отчет успешно импортирован в файл "output.xlsx" """)
-        # info_window.exec()
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
-
-        # setting message for Message Box
         msg.setText(""" Отчет успешно импортирован в файл "output.xlsx" """)
-
-        # setting Message box window title
-        msg.setWindowTitle("Information MessageBox")
-
-        # declaring buttons on Message Box
+        msg.setWindowTitle("Информационное окно")
         msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-
-        # start the app
         retval = msg.exec_()
 
 
